@@ -1,0 +1,4 @@
+mirna,target_gene,experiments,support_type,reference
+hsa-miR-21-5p,PDCD4,Luciferase reporter assay; Western blot,Experimentally validated demonstration subset,https://awi.cuhk.edu.cn/miRTarBase/records/MIRT003054/
+hsa-miR-21-5p,PTEN,Luciferase reporter assay; Western blot,Experimentally validated demonstration subset,https://awi.cuhk.edu.cn/miRTarBase/records/MIRT001190/
+hsa-miR-21-5p,RECK,Luciferase reporter assay; Western blot,Experimentally validated demonstration subset,https://awi.cuhk.edu.cn/miRTarBase/records/MIRT000969/

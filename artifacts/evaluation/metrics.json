@@ -1,0 +1,147 @@
+{
+  "dataset": {
+    "positive_total": 492,
+    "rfam_candidate_like_total": 3279,
+    "rfam_family_total": 441,
+    "train": {
+      "positive": 371,
+      "genomic_negative": 1113,
+      "rfam_negative": 742
+    },
+    "validation": {
+      "positive": 67,
+      "genomic_negative": 335,
+      "rfam_negative": 134
+    },
+    "test": {
+      "positive": 54,
+      "genomic_negative": 540,
+      "rfam_negative": 108
+    },
+    "negative_sources": "hg38 chr22 train/validation; hg38 chr21 test; Rfam seed structural RNAs split by family"
+  },
+  "selection": {
+    "selected_model": "Logistic regression",
+    "validation_pr_auc": {
+      "Logistic regression": 0.9553214457834852,
+      "Random Forest": 0.9491850871118079,
+      "Extra Trees": 0.9504949324124918,
+      "Histogram Gradient Boosting": 0.9454216887929769
+    },
+    "validation_thresholds": {
+      "Logistic regression": 0.8116616251900555,
+      "Random Forest": 0.6321482455847853,
+      "Extra Trees": 0.5766077747231356,
+      "Histogram Gradient Boosting": 0.792977518249066
+    },
+    "threshold": 0.8116616251900555
+  },
+  "test": {
+    "Logistic regression": {
+      "precision": 0.7741935483870968,
+      "recall": 0.8888888888888888,
+      "f1": 0.8275862068965517,
+      "pr_auc": 0.9120997774405438,
+      "roc_auc": 0.9809385002286237,
+      "false_positives_per_100_negatives": 2.1604938271604937,
+      "confusion_matrix": {
+        "tn": 634,
+        "fp": 14,
+        "fn": 6,
+        "tp": 48
+      }
+    },
+    "Random Forest": {
+      "precision": 0.8235294117647058,
+      "recall": 0.7777777777777778,
+      "f1": 0.8,
+      "pr_auc": 0.8773145395988595,
+      "roc_auc": 0.9815672153635117,
+      "false_positives_per_100_negatives": 1.3888888888888888,
+      "confusion_matrix": {
+        "tn": 639,
+        "fp": 9,
+        "fn": 12,
+        "tp": 42
+      }
+    },
+    "Extra Trees": {
+      "precision": 0.7777777777777778,
+      "recall": 0.7777777777777778,
+      "f1": 0.7777777777777778,
+      "pr_auc": 0.8699283638474592,
+      "roc_auc": 0.9773376771833562,
+      "false_positives_per_100_negatives": 1.8518518518518519,
+      "confusion_matrix": {
+        "tn": 636,
+        "fp": 12,
+        "fn": 12,
+        "tp": 42
+      }
+    },
+    "Histogram Gradient Boosting": {
+      "precision": 0.8275862068965517,
+      "recall": 0.8888888888888888,
+      "f1": 0.8571428571428571,
+      "pr_auc": 0.9016287026532448,
+      "roc_auc": 0.981424325560128,
+      "false_positives_per_100_negatives": 1.5432098765432098,
+      "confusion_matrix": {
+        "tn": 638,
+        "fp": 10,
+        "fn": 6,
+        "tp": 48
+      }
+    },
+    "MFE/nt baseline": {
+      "precision": 0.45454545454545453,
+      "recall": 0.8333333333333334,
+      "f1": 0.5882352941176471,
+      "pr_auc": 0.590352813593165,
+      "roc_auc": 0.9520890489254688,
+      "false_positives_per_100_negatives": 8.333333333333334,
+      "confusion_matrix": {
+        "tn": 594,
+        "fp": 54,
+        "fn": 9,
+        "tp": 45
+      }
+    }
+  },
+  "stratified_test": {
+    "genomic_negatives": {
+      "precision": 0.7868852459016393,
+      "recall": 0.8888888888888888,
+      "f1": 0.8347826086956521,
+      "pr_auc": 0.9142658056409281,
+      "roc_auc": 0.9790123456790123,
+      "false_positives_per_100_negatives": 2.4074074074074074,
+      "confusion_matrix": {
+        "tn": 527,
+        "fp": 13,
+        "fn": 6,
+        "tp": 48
+      }
+    },
+    "rfam_ncrna_negatives": {
+      "precision": 0.9795918367346939,
+      "recall": 0.8888888888888888,
+      "f1": 0.9320388349514563,
+      "pr_auc": 0.9855483892777077,
+      "roc_auc": 0.9905692729766804,
+      "false_positives_per_100_negatives": 0.9259259259259259,
+      "confusion_matrix": {
+        "tn": 107,
+        "fp": 1,
+        "fn": 6,
+        "tp": 48
+      }
+    }
+  },
+  "limitations": [
+    "Unannotated genomic hairpins are weak negative labels.",
+    "Rfam seed decoys are multi-species and are not a population-matched human background.",
+    "Model scores are ranking values, not calibrated biological probabilities.",
+    "Evaluation is human-specific and sequence/structure-only."
+  ]
+}

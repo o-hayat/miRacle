@@ -1,0 +1,8 @@
+file,refseq_accession,gene_symbol,chromosome,length_nt,refseq_status,retrieved_on,exact_or_reverse_match_in_model_sources,machinery_protein,primary_evidence,pmid,current_top_score,current_result,ncbi_url
+nr_030359_mir630.fa,NR_030359.1,MIR630,15,97,PROVISIONAL,2026-09-26,no,AGO2,anti-AGO2 RNA immunoprecipitation,38991944,0.8293,above_0.8117_threshold,https://www.ncbi.nlm.nih.gov/nuccore/NR_030359.1
+nr_030362_mir632.fa,NR_030362.1,MIR632,17,94,PROVISIONAL,2026-09-26,no,AGO2,anti-AGO2 RNA immunoprecipitation,32024815,0.5390,below_threshold,https://www.ncbi.nlm.nih.gov/nuccore/NR_030362.1
+nr_030386_mir663a.fa,NR_030386.1,MIR663A,20,93,PROVISIONAL,2026-09-26,no,AGO2,anti-AGO2 RNA immunoprecipitation,32514244,0.5718,below_threshold,https://www.ncbi.nlm.nih.gov/nuccore/NR_030386.1
+nr_031612_mir1207.fa,NR_031612.1,MIR1207,8,87,PROVISIONAL,2026-09-26,no,AGO2,anti-AGO2 RNA immunoprecipitation,33294297,0.0044,below_threshold,https://www.ncbi.nlm.nih.gov/nuccore/NR_031612.1
+nr_031622_mir1290.fa,NR_031622.1,MIR1290,1,78,PROVISIONAL,2026-09-26,no,AGO2,anti-AGO2 RNA immunoprecipitation,35411716,0.0915,below_threshold,https://www.ncbi.nlm.nih.gov/nuccore/NR_031622.1
+nr_030646_mir1225.fa,NR_030646.1,MIR1225,16,90,PROVISIONAL,2026-09-26,no,DROSHA,DROSHA binding and in-vitro processing plus pathway perturbation,22270084,0.0266,below_threshold,https://www.ncbi.nlm.nih.gov/nuccore/NR_030646.1
+nr_031597_mir1228.fa,NR_031597.1,MIR1228,12,73,PROVISIONAL,2026-09-26,no,DROSHA,DROSHA binding and in-vitro processing plus pathway perturbation,22270084,0.6812,below_threshold,https://www.ncbi.nlm.nih.gov/nuccore/NR_031597.1
