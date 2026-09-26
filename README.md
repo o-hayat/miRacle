@@ -1,12 +1,13 @@
-# MIR-NA
+# miRacle
 
-MIR-NA is a human-trained, offline prototype that turns a short DNA/RNA sequence into an explainable ranked shortlist of **pre-miRNA-like hairpins**.
+miRacle is a human-trained prototype that turns a short DNA/RNA sequence or selected hg38 locus into an explainable ranked shortlist of **pre-miRNA-like hairpins**.
 
 It is a candidate-triage tool, not a discovery claim. A score does not demonstrate transcription, precise Drosha/Dicer processing, RISC loading, gene targeting, disease association, or experimental validation.
 
 ## What is implemented
 
 - One pasted or uploaded FASTA/text sequence, 55–20,000 nt.
+- Direct hg38 locus input by chromosome and one-based inclusive start/end coordinates; bundled or downloaded regions work offline and other valid intervals use the UCSC sequence API.
 - Coordinate-aware hg38 preprocessing: mask protein-coding CDS by default, optionally all exons, when a length-matched `chr:start-end hg38` FASTA header is supplied.
 - Automatic strand handling: U-only RNA is scanned as supplied; DNA and ambiguous input are scanned on both strands.
 - RNALfold local scanning when its binary is available.
@@ -18,6 +19,7 @@ It is a candidate-triage tool, not a discovery claim. A score does not demonstra
 - Independent similarity warning against 3,279 candidate-like Rfam non-miRNA decoys.
 - Overlap suppression, top-10 interactive results, top-25 CSV/FASTA export.
 - Interactive ViennaRNA RNAplot/arc structure views with nucleotide coloring and SVG download, local one-feature sensitivity explanations, and explicit limitations.
+- One-click positive-versus-negative control comparison with identical pipeline processing, side-by-side evidence signals, and folded structures.
 - Held-out model comparison, normalized confusion matrix, and negative-subset stress tests.
 - Curated mature-arm lookup and a DROSHA/DGCR8/XPO5/DICER1/TARBP2/AGO2/TNRC6A evidence table.
 - Seven independent NCBI RefSeq controls with candidate-specific machinery experiments from primary studies.
@@ -33,7 +35,7 @@ The repository already contains a workspace-local Python 3.12 virtual environmen
 
 ```bash
 conda env create -f environment.yml
-conda activate mir-na
+conda activate miracle
 streamlit run app.py
 ```
 
@@ -45,7 +47,7 @@ python3.12 -m venv .venv
 .venv/bin/streamlit run app.py
 ```
 
-The PyPI ViennaRNA wheel provides the folding library used by the app but may not install the `RNALfold` executable. In that case MIR-NA clearly reports and uses the planned RNAfold multi-scale fallback. Installing ViennaRNA through Bioconda supplies the command-line programs.
+The PyPI ViennaRNA wheel provides the folding library used by the app but may not install the `RNALfold` executable. In that case miRacle clearly reports and uses the planned RNAfold multi-scale fallback. Installing ViennaRNA through Bioconda supplies the command-line programs.
 
 Open [http://localhost:8501](http://localhost:8501), load the MIR21 positive control, and select **Run candidate scan**.
 
@@ -123,7 +125,8 @@ Exact runtime varies by machine. The displayed score is a ranking value and must
 ## Architecture
 
 ```text
-FASTA/text
+FASTA/text or hg38 chromosome:start-end
+  → optional bundled/local/UCSC sequence retrieval
   → validation and strand handling
   → optional coordinate-aware hg38 CDS/exon masking
   → RNALfold or RNAfold-window candidate generation
@@ -152,8 +155,8 @@ Coordinates are 1-based, inclusive, and relative to the submitted sequence.
 2. Load the bundled MIR21 genomic region; its hg38 header enables auditable CDS masking.
 3. Run the scan and show that the annotated locus ranks first.
 4. Inspect its fold, MFE, feature influences, and near-exact curated-reference match.
-5. Show the held-out benchmark against MFE alone.
-6. Load the genomic negative control and contrast its much lower top score.
+5. Open **Compare controls** and run MIR21 against the genomic negative to show the two folds and evidence layers side by side.
+6. Show the held-out benchmark against MFE alone to distinguish the demo contrast from formal evaluation.
 7. Close with the intended decision: which few loci should a researcher investigate experimentally first?
 
 The complete talk track and judge answers are in [PITCH.md](PITCH.md).

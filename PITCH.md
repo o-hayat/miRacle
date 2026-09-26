@@ -1,8 +1,8 @@
-# MIR-NA demo and pitch notes
+# miRacle demo and pitch notes
 
 ## One-sentence pitch
 
-MIR-NA turns a short human genomic sequence into an explainable, ranked shortlist of precursor-miRNA-like hairpins, helping researchers decide which candidates are worth experimental follow-up first.
+miRacle turns a short human genomic sequence into an explainable, ranked shortlist of precursor-miRNA-like hairpins, helping researchers decide which candidates are worth experimental follow-up first.
 
 ## Three-minute talk track
 
@@ -12,7 +12,7 @@ Genomic regions can contain many sequences that fold into hairpins, but only a s
 
 ### 0:25–0:45 — Input
 
-Load the bundled MIR21 control. Explain that MIR-NA receives only a 1,000-nucleotide sequence: it is not told the locus name or precursor coordinates. Choose genomic mode so both strands are scanned.
+Load the bundled MIR21 control. Explain that miRacle receives only a 1,000-nucleotide sequence: it is not told the precursor coordinates. Genomic DNA is scanned on both strands.
 
 ### 0:45–1:15 — Candidate generation
 
@@ -24,7 +24,7 @@ Open candidate 1. On the checked-in control it spans the exact 501–560 precurs
 
 ### 1:55–2:20 — Be explicit about uncertainty
 
-Read the missing-evidence panel. MIR-NA does not prove expression, precise Drosha/Dicer processing, RISC loading, targeting, function, or disease association. It ranks sequence-and-structure resemblance for follow-up.
+Read the missing-evidence panel. miRacle does not prove expression, precise Drosha/Dicer processing, RISC loading, targeting, function, or disease association. It ranks sequence-and-structure resemblance for follow-up.
 
 ### 2:20–2:40 — Evaluation
 
@@ -32,7 +32,7 @@ Show the held-out comparison. On 54 family-held-out precursors, 540 candidate-li
 
 ### 2:40–3:00 — Contrast and close
 
-Load the genomic negative control. Its top score is 0.048, versus 0.995 for the top MIR21-region candidate. Mention the additional held-out tRNA, rRNA, snoRNA, and ribozyme controls. Close with the supported decision: which few candidate loci should a researcher investigate experimentally first?
+Open **Compare controls** and run the MIR21 region against the genomic negative. The tab sends both sequences through the identical pipeline and displays their top candidates, folds, learned scores, reference matches, and non-miRNA conflicts side by side. The default pair scores 0.995 versus 0.048. Emphasize that this is an intuitive demonstration contrast; the preceding held-out evaluation is the scientific benchmark. Close with the supported decision: which few candidate loci should a researcher investigate experimentally first?
 
 ## Likely judge questions
 

@@ -16,7 +16,7 @@ ORIGINAL_DIR = ROOT / "assets" / "examples" / "external_ncbi_mirnas"
 OUTPUT_DIR = ROOT / "assets" / "examples" / "external_ncbi_mirnas_flanked"
 COMBINED_PATH = ROOT / "assets" / "ncbi_external_machinery_mirnas_flanked.fa"
 API = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
-USER_AGENT = "MIR-NA-hackathon/0.2 (offline-reference-builder)"
+USER_AGENT = "miRacle-hackathon/0.3 (offline-reference-builder)"
 
 
 def request_text(endpoint: str, params: dict[str, str]) -> str:

@@ -1,4 +1,4 @@
-name: mir-na
+name: miracle
 channels:
   - conda-forge
   - bioconda

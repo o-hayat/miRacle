@@ -1,4 +1,4 @@
-"""MIR-NA: explainable pre-miRNA candidate ranking."""
+"""miRacle: explainable pre-miRNA candidate ranking."""
 
 from .pipeline import analyze
 
