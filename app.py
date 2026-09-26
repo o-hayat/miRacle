@@ -17,6 +17,7 @@ from mirna_app.evidence import (
     machinery_evidence,
     mature_arms,
 )
+from mirna_app.genome import HG38_CHROMOSOME_LENGTHS, fetch_hg38_region
 from mirna_app.pipeline import analyze
 from mirna_app.sequence import SequenceValidationError, infer_input_type
 from mirna_app.types import AnalysisResult, CandidateResult
@@ -27,32 +28,46 @@ ROOT = Path(__file__).resolve().parent
 EXAMPLES = ROOT / "assets" / "examples"
 METRICS_PATH = ROOT / "artifacts" / "evaluation" / "metrics.json"
 
-st.set_page_config(page_title="MIR-NA", page_icon="🧬", layout="wide")
+COMPARISON_POSITIVE_CONTROLS = {
+    "MIR21 known-locus control": "mir21_region.fa",
+    "External MIR630 genomic control": "external_ncbi_mirnas_flanked/nr_030359_mir630_plusminus500.fa",
+}
+COMPARISON_NEGATIVE_CONTROLS = {
+    "Unannotated genomic control": "negative_control.fa",
+    "Rfam tRNA control": "rfam_trna_control.fa",
+    "Rfam rRNA control": "rfam_rrna_control.fa",
+    "Rfam snoRNA control": "rfam_snorna_control.fa",
+    "Rfam ribozyme control": "rfam_ribozyme_control.fa",
+}
+
+st.set_page_config(page_title="miRacle", page_icon="🧬", layout="wide")
 st.markdown(
     """
     <style>
     header[data-testid="stHeader"], [data-testid="stAppHeader"], [data-testid="stToolbar"], [data-testid="stDecoration"] {display:none !important; height:0 !important;}
     [data-testid="stAppViewContainer"] {margin-top:0 !important;}
     .stApp {background: radial-gradient(circle at 12% 0%, #10233d 0%, #07101d 36%, #050a12 100%);}
-    .block-container {max-width: 1220px; padding-top: 1rem;}
+    .block-container {max-width: 1220px; padding-top: 2rem;}
     .hero-kicker {color:#2dd4bf; letter-spacing:.16em; font-weight:700; font-size:.78rem;}
     .hero-title {font-size:3.15rem; line-height:1; font-weight:760; color:#f8fafc; margin:.25rem 0 .7rem;}
-    .hero-copy {font-size:1.05rem; color:#a8b6c8; max-width:760px;}
-    .disclaimer {border:1px solid #334155; background:#0b1524; border-radius:12px; padding:.75rem 1rem; color:#a8b6c8;}
-    .evidence {border:1px solid #25354b; background:linear-gradient(145deg,#0b1627,#0a1220); border-radius:16px; padding:1rem; min-height:120px;}
+    .hero-copy {font-size:1.05rem; color:#a8b6c8; margin-top:.1rem;}
+    .hero-caveat {font-size:.86rem; color:#7f91a8; margin-top:.35rem; white-space:nowrap;}
+    .evidence {border:1px solid #25354b; background:linear-gradient(145deg,#0b1627,#0a1220); border-radius:16px; padding:1rem; height:154px; box-sizing:border-box; overflow:hidden;}
     .evidence-label {color:#7dd3fc; text-transform:uppercase; letter-spacing:.09em; font-size:.68rem; font-weight:700;}
-    .evidence-value {color:#f8fafc; font-size:1.45rem; font-weight:700; margin-top:.25rem;}
+    .evidence-value {color:#f8fafc; font-size:1.38rem; line-height:1.15; font-weight:700; margin-top:.25rem; overflow-wrap:anywhere;}
     .evidence-note {color:#94a3b8; font-size:.8rem; margin-top:.35rem;}
+    .evidence-row-gap {height:.75rem;}
+    .evidence-section-gap {height:1.25rem;}
     div[data-testid="stMetric"] {background:#0b1524; border:1px solid #25354b; padding:1rem; border-radius:14px;}
+    div[data-testid="stMetricValue"] {font-size:1.55rem; line-height:1.15; white-space:normal; overflow:visible;}
+    div[data-testid="stMetricValue"] > div {white-space:normal; overflow:visible; text-overflow:clip;}
+    @media (max-width: 900px) {.hero-caveat {white-space:normal;} .evidence {height:auto; min-height:142px;}}
     </style>
     <div class="hero-kicker">EXPLAINABLE miRNA CANDIDATE TRIAGE</div>
-    <div class="hero-title">MIR-NA</div>
+    <div class="hero-title">miRacle</div>
     <div class="hero-copy">From a short human genomic sequence to a ranked, inspectable shortlist of precursor-miRNA-like hairpins.</div>
+    <div class="hero-caveat">Sequence-only candidate ranking—not experimental validation; scores do not establish expression, precise processing, targets, function, or disease relevance.</div>
     """,
-    unsafe_allow_html=True,
-)
-st.markdown(
-    '<div class="disclaimer">Sequence-only candidate ranking—not experimental validation. Scores do not establish expression, precise processing, targets, function, or disease relevance.</div>',
     unsafe_allow_html=True,
 )
 
@@ -64,6 +79,19 @@ def read_example(name: str) -> str:
 
 def set_example(name: str) -> None:
     st.session_state.sequence_input = read_example(name)
+
+
+@st.cache_data(show_spinner=False)
+def analyze_bundled_control(name: str) -> AnalysisResult:
+    """Run one immutable bundled control once per Streamlit cache."""
+    text = read_example(name)
+    return analyze(text, input_type=infer_input_type(text))
+
+
+@st.cache_data(show_spinner=False)
+def load_hg38_region(chromosome: str, start: int, end: int) -> str:
+    """Load one immutable hg38 interval from bundled, local, or UCSC sequence."""
+    return fetch_hg38_region(chromosome, start, end)
 
 
 def result_frame(result: AnalysisResult) -> pd.DataFrame:
@@ -181,6 +209,80 @@ def influence_figure(candidate: CandidateResult) -> go.Figure:
     return figure
 
 
+def comparison_figure(
+    positive: CandidateResult,
+    negative: CandidateResult,
+    positive_label: str,
+    negative_label: str,
+) -> go.Figure:
+    """Compare normalized evidence layers without treating them as one score."""
+    labels = ["Model score", "Paired fraction", "Known-reference match", "Rfam conflict"]
+
+    def values(candidate: CandidateResult) -> list[float]:
+        return [
+            candidate.model_score * 100,
+            candidate.features["paired_fraction"] * 100,
+            candidate.nearest_reference.identity * candidate.nearest_reference.coverage * 100,
+            candidate.nearest_non_mirna.identity * candidate.nearest_non_mirna.coverage * 100,
+        ]
+
+    figure = go.Figure()
+    figure.add_bar(name=positive_label, x=labels, y=values(positive), marker_color="#2dd4bf")
+    figure.add_bar(name=negative_label, x=labels, y=values(negative), marker_color="#fb7185")
+    figure.update_layout(
+        barmode="group",
+        height=390,
+        margin={"l": 25, "r": 15, "t": 35, "b": 30},
+        yaxis={"title": "Normalized value (%)", "range": [0, 105], "gridcolor": "#172235"},
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        font={"color": "#a8b6c8"},
+        legend={"orientation": "h", "y": 1.12},
+    )
+    return figure
+
+
+def comparison_table(
+    positive: CandidateResult,
+    negative: CandidateResult,
+    positive_label: str,
+    negative_label: str,
+) -> pd.DataFrame:
+    """Exact values for the side-by-side judge demonstration."""
+    rows = []
+    measures = [
+        ("Precursor-likeness", lambda c: f"{c.model_score * 100:.1f}/100"),
+        ("MFE", lambda c: f"{c.mfe_kcal_mol:.1f} kcal/mol"),
+        ("Normalized MFE", lambda c: f"{c.features['mfe_per_nt']:.3f} kcal/mol/nt"),
+        ("Paired nucleotide fraction", lambda c: f"{c.features['paired_fraction']:.0%}"),
+        ("Longest stem", lambda c: f"{int(c.features['longest_stem'])} paired steps"),
+        ("Terminal loop", lambda c: f"{int(c.features['terminal_loop_size'])} nt"),
+        (
+            "Nearest human reference",
+            lambda c: (
+                f"{c.nearest_reference.name} · {c.nearest_reference.identity:.0%} identity · "
+                f"{c.nearest_reference.coverage:.0%} coverage"
+            ),
+        ),
+        (
+            "Nearest Rfam non-miRNA",
+            lambda c: (
+                f"{c.nearest_non_mirna.name.split('|')[1] if '|' in c.nearest_non_mirna.name else c.nearest_non_mirna.name} · "
+                f"{c.nearest_non_mirna.identity:.0%} identity · {c.nearest_non_mirna.coverage:.0%} coverage"
+            ),
+        ),
+    ]
+    for measure, formatter in measures:
+        rows.append(
+            {
+                "Measure": measure,
+                positive_label: formatter(positive),
+                negative_label: formatter(negative),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
 def evidence_card(label: str, value: str, note: str) -> None:
     st.markdown(
         f'<div class="evidence"><div class="evidence-label">{label}</div><div class="evidence-value">{value}</div><div class="evidence-note">{note}</div></div>',
@@ -229,8 +331,8 @@ def confusion_figure(confusion: dict[str, int]) -> go.Figure:
     return figure
 
 
-discover_tab, evidence_tab, evaluation_tab, science_tab = st.tabs(
-    ["Discover", "Evidence", "Evaluation", "Science & limitations"]
+discover_tab, comparison_tab, evidence_tab, evaluation_tab, science_tab = st.tabs(
+    ["Discover", "Compare controls", "Evidence", "Evaluation", "Science & limitations"]
 )
 selected_candidate: CandidateResult | None = None
 
@@ -238,7 +340,11 @@ with discover_tab:
     st.subheader("Analyze a short human sequence")
     controls, input_column = st.columns([0.30, 0.70], gap="large")
     with controls:
-        st.caption("Bundled controls")
+        input_method = st.selectbox(
+            "Input method",
+            ["Sequence / FASTA", "hg38 genomic coordinates"],
+            help="Paste or upload a sequence, or retrieve a reference-forward GRCh38 interval by chromosome and one-based inclusive coordinates.",
+        )
         control_options = {
             "MIR21 positive control": "mir21_region.fa",
             "External MIR630 — AGO2 RIP": "external_ncbi_mirnas/nr_030359_mir630.fa",
@@ -261,14 +367,19 @@ with discover_tab:
             "Rfam snoRNA control": "rfam_snorna_control.fa",
             "Rfam ribozyme control": "rfam_ribozyme_control.fa",
         }
-        selected_control = st.selectbox("Example", list(control_options))
-        st.button(
-            "Load selected control",
-            width="stretch",
-            on_click=set_example,
-            args=(control_options[selected_control],),
-        )
-        uploaded = st.file_uploader("Upload one FASTA or text record", type=["fa", "fasta", "txt"])
+        uploaded = None
+        if input_method == "Sequence / FASTA":
+            st.caption("Bundled controls")
+            selected_control = st.selectbox("Example", list(control_options))
+            st.button(
+                "Load selected control",
+                width="stretch",
+                on_click=set_example,
+                args=(control_options[selected_control],),
+            )
+            uploaded = st.file_uploader(
+                "Upload one FASTA or text record", type=["fa", "fasta", "txt"]
+            )
         mask_choice = st.selectbox(
             "Protein-region preprocessing",
             [
@@ -289,6 +400,51 @@ with discover_tab:
             st.session_state.sequence_input = read_example("mir21_region.fa")
         if uploaded is not None:
             st.session_state.sequence_input = uploaded.getvalue().decode("utf-8", errors="replace")
+        if input_method == "hg38 genomic coordinates":
+            coordinate_columns = st.columns([0.20, 0.29, 0.29, 0.22], gap="small")
+            chromosome = coordinate_columns[0].selectbox(
+                "Chromosome",
+                list(HG38_CHROMOSOME_LENGTHS),
+                index=list(HG38_CHROMOSOME_LENGTHS).index("chr17"),
+            )
+            start_index = coordinate_columns[1].number_input(
+                "Start index",
+                min_value=1,
+                value=59_840_773,
+                step=1,
+                help="One-based, inclusive GRCh38 coordinate.",
+            )
+            end_index = coordinate_columns[2].number_input(
+                "End index",
+                min_value=1,
+                value=59_841_772,
+                step=1,
+                help="One-based, inclusive GRCh38 coordinate.",
+            )
+            with coordinate_columns[3]:
+                st.write("")
+                st.write("")
+                load_region_clicked = st.button(
+                    "Load region",
+                    type="secondary",
+                    width="stretch",
+                )
+            if load_region_clicked:
+                try:
+                    with st.spinner("Loading the selected GRCh38 sequence…"):
+                        st.session_state.sequence_input = load_hg38_region(
+                            chromosome,
+                            int(start_index),
+                            int(end_index),
+                        )
+                    st.success(
+                        f"Loaded {chromosome}:{int(start_index):,}–{int(end_index):,} from GRCh38."
+                    )
+                except SequenceValidationError as error:
+                    st.error(str(error))
+            st.caption(
+                "Bundled and locally downloaded regions work offline; other chromosomes are retrieved from the UCSC hg38 sequence API and then analyzed locally."
+            )
         sequence_text = st.text_area(
             "Sequence or FASTA", key="sequence_input", height=235,
             placeholder=">region_1\nACGTTGCA…",
@@ -314,7 +470,7 @@ with discover_tab:
     result: AnalysisResult | None = st.session_state.get("analysis_result")
     if result:
         st.divider()
-        metrics_columns = st.columns(4)
+        metrics_columns = st.columns([0.18, 0.16, 0.18, 0.48], gap="medium")
         metrics_columns[0].metric("Input length", f"{result.input_length:,} nt")
         metrics_columns[1].metric("Candidates", len(result.candidates))
         metrics_columns[2].metric("Runtime", f"{result.runtime_ms / 1000:.2f} s")
@@ -369,6 +525,7 @@ with discover_tab:
                 match = candidate.nearest_reference
                 evidence_card("Nearest reference", match.name, f"{match.identity:.0%} identity · {match.coverage:.0%} reference coverage")
 
+            st.markdown('<div class="evidence-row-gap"></div>', unsafe_allow_html=True)
             level, level_note = evidence_level(candidate)
             decoy = candidate.nearest_non_mirna
             evidence_cards = st.columns(2)
@@ -381,6 +538,7 @@ with discover_tab:
                     f"{decoy.identity:.0%} identity · {decoy.coverage:.0%} reference coverage",
                 )
 
+            st.markdown('<div class="evidence-section-gap"></div>', unsafe_allow_html=True)
             structure_column, explanation_column = st.columns([0.57, 0.43], gap="large")
             with structure_column:
                 st.markdown("#### Predicted secondary structure")
@@ -434,10 +592,154 @@ with discover_tab:
                 for limitation in candidate.limitations:
                     st.markdown(f"- {limitation}")
 
+with comparison_tab:
+    st.subheader("Positive versus negative control")
+    st.caption(
+        "Run the identical folding, feature, and model pipeline on a known miRNA region and a negative control. This is a demonstration contrast—not an additional test set or a claim that every negative RNA will score low."
+    )
+    comparison_controls = st.columns([0.4, 0.4, 0.2], gap="large")
+    with comparison_controls[0]:
+        positive_label = st.selectbox(
+            "Positive control",
+            list(COMPARISON_POSITIVE_CONTROLS),
+            key="comparison-positive-control",
+        )
+    with comparison_controls[1]:
+        negative_label = st.selectbox(
+            "Negative control",
+            list(COMPARISON_NEGATIVE_CONTROLS),
+            key="comparison-negative-control",
+        )
+    with comparison_controls[2]:
+        st.write("")
+        st.write("")
+        run_comparison = st.button(
+            "Run comparison",
+            type="primary",
+            width="stretch",
+            key="run-control-comparison",
+        )
+
+    if run_comparison:
+        try:
+            with st.spinner("Running both controls through the same analysis pipeline…"):
+                positive_result = analyze_bundled_control(
+                    COMPARISON_POSITIVE_CONTROLS[positive_label]
+                )
+                negative_result = analyze_bundled_control(
+                    COMPARISON_NEGATIVE_CONTROLS[negative_label]
+                )
+            st.session_state.control_comparison = (
+                positive_label,
+                positive_result,
+                negative_label,
+                negative_result,
+            )
+        except Exception as error:
+            st.error(f"Control comparison could not complete: {error}")
+
+    comparison = st.session_state.get("control_comparison")
+    if comparison:
+        stored_positive_label, positive_result, stored_negative_label, negative_result = comparison
+        if not positive_result.candidates or not negative_result.candidates:
+            st.warning(
+                "At least one control produced no candidate passing the loose structural gate; that itself is a valid negative outcome. Choose another control to compare detailed candidates."
+            )
+        else:
+            positive = positive_result.candidates[0]
+            negative = negative_result.candidates[0]
+            threshold = positive_result.score_threshold or 0.5
+            score_gap = (positive.model_score - negative.model_score) * 100
+
+            st.divider()
+            outcome_columns = st.columns(4)
+            outcome_columns[0].metric(
+                "Positive top score", f"{positive.model_score * 100:.1f}/100"
+            )
+            outcome_columns[1].metric(
+                "Negative top score", f"{negative.model_score * 100:.1f}/100"
+            )
+            outcome_columns[2].metric("Score separation", f"{score_gap:+.1f} points")
+            outcome_columns[3].metric("Decision threshold", f"{threshold * 100:.1f}/100")
+
+            if positive.model_score >= threshold and negative.model_score < threshold:
+                st.success(
+                    "Expected contrast: the known positive passes the validation-selected threshold while the negative control remains below it."
+                )
+            else:
+                st.warning(
+                    "This pair does not separate cleanly at the validation-selected threshold. That is an honest reminder that stable non-miRNA RNAs can resemble precursor hairpins."
+                )
+
+            st.markdown("#### Evidence signals side by side")
+            st.plotly_chart(
+                comparison_figure(
+                    positive,
+                    negative,
+                    stored_positive_label,
+                    stored_negative_label,
+                ),
+                width="stretch",
+                config={"displayModeBar": False},
+            )
+            st.caption(
+                "Known-reference and Rfam bars are identity × reference coverage. A higher Rfam-conflict bar is evidence against a miRNA interpretation; these four bars are not added into one score."
+            )
+            st.dataframe(
+                comparison_table(
+                    positive,
+                    negative,
+                    stored_positive_label,
+                    stored_negative_label,
+                ),
+                width="stretch",
+                hide_index=True,
+            )
+
+            st.markdown("#### Folded candidates and influential features")
+            structure_columns = st.columns(2, gap="large")
+            for column, label, candidate, color in (
+                (structure_columns[0], stored_positive_label, positive, "#2dd4bf"),
+                (structure_columns[1], stored_negative_label, negative, "#fb7185"),
+            ):
+                with column:
+                    level, note = evidence_level(candidate)
+                    st.markdown(f"##### {label}")
+                    st.markdown(
+                        f"**Candidate #{candidate.rank} · {candidate.start:,}–{candidate.end:,} ({candidate.strand})**  "
+                        f"\n<span style='color:{color};font-size:1.35rem;font-weight:700'>{candidate.model_score * 100:.1f}/100</span> · {level}",
+                        unsafe_allow_html=True,
+                    )
+                    st.caption(note)
+                    svg, renderer = structure_visual(
+                        candidate.sequence_rna,
+                        candidate.dot_bracket,
+                        "vienna",
+                    )
+                    components.html(
+                        '<style>html,body{margin:0;background:#08111f;overflow:hidden}'
+                        'svg{display:block;margin:auto}</style>' + svg,
+                        height=470,
+                        scrolling=False,
+                    )
+                    st.caption(
+                        f"{renderer} · MFE {candidate.mfe_kcal_mol:.1f} kcal/mol · "
+                        f"paired {candidate.features['paired_fraction']:.0%}"
+                    )
+                    st.plotly_chart(
+                        influence_figure(candidate),
+                        width="stretch",
+                        config={"displayModeBar": False},
+                        key=f"comparison-influences-{label}",
+                    )
+            st.info(
+                "Interpretation: the comparison shows why multiple evidence layers matter. Hairpin geometry alone can occur in non-miRNA RNA, while the learned score, curated-reference match, and Rfam conflict help distinguish the controls."
+            )
+
 with evidence_tab:
     st.subheader("Evidence ladder and protein context")
     st.caption(
-        "Computed resemblance, curated identity, processing machinery, and validated downstream targets are different evidence types. MIR-NA keeps them separate."
+        "Computed resemblance, curated identity, processing machinery, and validated downstream targets are different evidence types. miRacle keeps them separate."
     )
     if selected_candidate is None:
         st.info("Run an analysis and select a candidate to inspect its evidence chain.")
@@ -533,7 +835,7 @@ with evidence_tab:
             st.link_button(literature.source_label, literature.source_url)
         elif match.identity >= 0.90 and match.coverage >= 0.85:
             st.info(
-                "This is a strong reference match, but MIR-NA does not yet bundle a manually curated literature card for it. No summary is generated automatically."
+                "This is a strong reference match, but miRacle does not yet bundle a manually curated literature card for it. No summary is generated automatically."
             )
         else:
             st.info("Literature context is shown only for a strong human curated-reference match.")
@@ -612,7 +914,7 @@ with evaluation_tab:
         test = report["test"]
         selected = report["selection"]["selected_model"]
         selected_results = test[selected]
-        summary_columns = st.columns(5)
+        summary_columns = st.columns([0.32, 0.17, 0.17, 0.17, 0.17], gap="medium")
         summary_columns[0].metric("Selected model", selected)
         summary_columns[1].metric("Precision", f"{selected_results['precision']:.3f}")
         summary_columns[2].metric("Recall", f"{selected_results['recall']:.3f}")

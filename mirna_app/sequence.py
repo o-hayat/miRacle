@@ -27,7 +27,7 @@ def parse_sequence_text(text: str, fallback_id: str = "input_sequence") -> Parse
     lines = [line.strip() for line in text.splitlines() if line.strip()]
     headers = [line for line in lines if line.startswith(">")]
     if len(headers) > 1:
-        raise SequenceValidationError("MIR-NA accepts exactly one FASTA record at a time.")
+        raise SequenceValidationError("miRacle accepts exactly one FASTA record at a time.")
 
     identifier = fallback_id
     description = ""

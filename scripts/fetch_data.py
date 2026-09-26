@@ -27,7 +27,7 @@ URLS = {
 
 def download(url: str, destination: Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
-    request = urllib.request.Request(url, headers={"User-Agent": "MIR-NA-hackathon/0.1"})
+    request = urllib.request.Request(url, headers={"User-Agent": "miRacle-hackathon/0.3"})
     with urllib.request.urlopen(request, timeout=120) as response:
         destination.write_bytes(response.read())
 
@@ -37,7 +37,7 @@ def fetch_ucsc_interval(chrom: str, start: int, end: int, identifier: str, desti
         "https://api.genome.ucsc.edu/getData/sequence"
         f"?genome=hg38;chrom={chrom};start={start};end={end}"
     )
-    request = urllib.request.Request(url, headers={"User-Agent": "MIR-NA-hackathon/0.1"})
+    request = urllib.request.Request(url, headers={"User-Agent": "miRacle-hackathon/0.3"})
     with urllib.request.urlopen(request, timeout=60) as response:
         payload = json.loads(response.read().decode("utf-8"))
     dna = payload["dna"].upper()

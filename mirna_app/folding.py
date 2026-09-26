@@ -56,7 +56,7 @@ def fold_one(sequence: str) -> tuple[str, float]:
             match = _FOLD_LINE.match(line)
             if match:
                 return match.group(1), float(match.group(2))
-        raise RuntimeError("RNAfold returned output that MIR-NA could not parse.")
+        raise RuntimeError("RNAfold returned output that miRacle could not parse.")
 
     raise ViennaUnavailableError(
         "ViennaRNA is not installed. Install the conda environment from environment.yml "
