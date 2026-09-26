@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mir-na"
+version = "0.1.0"
+description = "Explainable human pre-miRNA candidate ranking prototype"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+  "streamlit>=1.40,<2",
+  "numpy>=1.26,<3",
+  "pandas>=2.2,<3",
+  "scikit-learn>=1.5,<2",
+  "plotly>=5.24,<7",
+  "joblib>=1.4,<2",
+  "ViennaRNA>=2.7,<2.8",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
