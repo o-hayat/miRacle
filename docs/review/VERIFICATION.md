@@ -8,7 +8,7 @@ Branch: `feat/openai-research-ui`. The Python application and trained classifier
 - Five OpenAI reference routes: http://127.0.0.1:3002
 - Frontend/build instructions: [web/README.md](../../web/README.md)
 - Reference source mapping and limitations: [REFERENCE-README.md](../../design-references/openai/REFERENCE-README.md)
-- Current screenshots: [desktop](research-home-1440.png), [mobile](research-home-390.png), [loaded results](research-results-1440.png), [3D features](research-feature-3d-1440.png), [evaluation](research-evaluation-chromium-1440.png)
+- Current screenshots: [desktop](theme-light-home-1440.png), [mobile](theme-light-home-390.png), [dark desktop](theme-dark-home-1440.png), [dark mobile](theme-dark-home-390.png), [controls](theme-light-controls-1440.png), [footer theme button](theme-footer-1440.png), [evaluation](theme-light-evaluation-1440.png)
 
 The reference library is separate from the production deployment. All five source pages were visually inspected in the user's working Safari session. Browser captures, measured styles, original pathnames, article content, interaction states, and 575 locally stored assets are retained. The final source asset manifest has no failed downloads. The exported reference pages pass all 15 combinations of five routes and 390/768/1440px widths, including image loading, browser errors, and horizontal overflow. Screenshots and machine-readable results are in `design-references/openai/docs/`.
 
@@ -35,11 +35,17 @@ All three research figure panels were checked at 390/768/1440px in all three bro
 
 After the final label-spacing and identifier-truncation adjustments, all **18 focused figure checks passed again** against the rebuilt export. Current screenshots reflect those adjustments. The Three.js view remains optional and plots actual features rather than molecular coordinates.
 
-The full scientific browser report is retained in `browser-science-results.json`; the 42-check interface report is in `browser-interface-results.json`. Focused reruns write `browser-results.json`. Reference verification lives in `design-references/openai/docs/verification.json`. Command logs and earlier screenshots remain in `artifacts/tmp/` pending cleanup approval.
+The latest refinement adds transparent disclosure headers, consistent shadcn collapsibles for research details, rounded selectors, gray selected tabs, and a Light/Dark/System footer menu. The saved-example action, export-count caption, Known-like callout, and four Evaluation notices were removed as requested. All **51 interface checks passed** across Chromium, Firefox, and WebKit; these tests now reach results through real worker scans. A browser inspection confirmed the removals and refreshed light/dark screenshots at 390/768/1440px.
+
+The final header action reads “Github Repository,” with a 44px height and balanced icon/text padding. System is now the initial theme; explicit choices still persist. After rebuilding these final changes, all **12 focused theme and responsive checks passed** across Chromium, Firefox, and WebKit. Light/dark header checks at 320/390/768/1440px found no horizontal overflow. The footer shows System before and after hydration on a fresh visit.
+
+Theme checks cover keyboard selection, reload persistence, live system-appearance changes, hydration errors, and preserving candidate/disclosure/3D selection. Dark accessibility checks cover all five workflows, selectors, and the theme menu at phone and desktop widths. Open-menu axe scans exclude only Base UI's internal `[data-base-ui-focus-guard]` sentinels because they immediately redirect focus; a separate assertion verifies that behavior. All accessibility rules remain enabled for user-facing controls. See the [upstream explanation](https://github.com/mui/base-ui/issues/4668#issuecomment-4306200868). Checks wait for popup transitions to settle before measuring contrast.
+
+The full scientific browser report is retained in `browser-science-results.json`; the previous 42-check interface report is in `browser-interface-results.json`; the 51-check refinement report is in `browser-refinement-results.json`. Current reruns write `browser-results.json`. Reference verification lives in `design-references/openai/docs/verification.json`. Command logs and earlier screenshots remain in `artifacts/tmp/` pending cleanup approval.
 
 ## Deployment and retained material
 
-`web/vercel.json` uses the `web` project root, Node 24, Bun, and static `out/` output, with immutable caching for versioned scientific data and workers. The verified export contains 882 assets totaling 52,176,818 bytes; its largest asset is 18,632,664 bytes. No asset exceeds the project's 25-MiB download budget. The optional Three.js chunks load only when requested. These figures are a project check, not a claim about a Cloudflare plan.
+`web/vercel.json` uses the `web` project root, Node 24, Bun, and static `out/` output, with immutable caching for versioned scientific data and workers. The verified export contains 884 assets totaling 52,243,509 bytes; its largest asset is 18,632,664 bytes. No asset exceeds the project's 25-MiB download budget. The optional Three.js chunks load only when requested. These figures are a project check, not a claim about a Cloudflare plan.
 
 Vercel CLI reports this machine is logged out. No deployment was performed. No branch push or merge was performed by this implementation. The branch already has an upstream tracking entry; that entry was retained. The reference template is vendored for a complete reviewable diff; its original commit and retained Git metadata are documented in its README. Temporary clones, downloads, old configurations, and build scratch remain pending the user's requested approval before cleanup.
 

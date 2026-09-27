@@ -1,8 +1,13 @@
 "use client";
-import { Download, ArrowUpRight } from "lucide-react";
+import { Download, ArrowUpRight, ChevronDown } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Alert, AlertDescription } from "./ui/alert";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "./ui/collapsible";
 import {
   Table,
   TableBody,
@@ -18,6 +23,7 @@ import {
   ReferenceSimilarity,
 } from "./research-figures";
 import { candidateEvidence } from "@/lib/analysis/evidence";
+import { cn } from "@/lib/utils";
 import {
   candidatesCsv,
   candidatesFasta,
@@ -30,6 +36,27 @@ import type {
 } from "@/lib/analysis/types";
 
 export const percent = (n: number) => `${(n * 100).toFixed(1)}%`;
+function ResearchDisclosure({
+  title,
+  children,
+  className = "",
+}: {
+  title: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <Collapsible className={cn("research-disclosure", className)}>
+      <CollapsibleTrigger className="option-trigger">
+        <span>{title}</span>
+        <ChevronDown aria-hidden="true" />
+      </CollapsibleTrigger>
+      <CollapsibleContent className="option-content" keepMounted>
+        {children}
+      </CollapsibleContent>
+    </Collapsible>
+  );
+}
 export function Note({
   children,
   error = false,
@@ -174,14 +201,18 @@ export function CandidateDetail({
             candidate={candidate}
             coordinates={analysis.layouts[candidate.id]}
           />
-          <details>
-            <summary>Sequence and dot-bracket notation</summary>
-            <pre className="sequence-code">
+          <ResearchDisclosure title="Sequence and dot-bracket notation">
+            <pre
+              className="sequence-code"
+              tabIndex={0}
+              role="region"
+              aria-label="Sequence and dot-bracket notation"
+            >
               {candidate.sequence_rna}
               {"\n"}
               {candidate.dot_bracket}
             </pre>
-          </details>
+          </ResearchDisclosure>
         </div>
         <div>
           <h4>Why it ranked here</h4>
@@ -193,14 +224,16 @@ export function CandidateDetail({
           <Sensitivity candidate={candidate} />
         </div>
       </div>
-      <details className="limitations" open>
-        <summary>Evidence this analysis does not provide</summary>
+      <ResearchDisclosure
+        title="Evidence this analysis does not provide"
+        className="limitations"
+      >
         <ul>
           {candidate.limitations.map((l) => (
             <li key={l}>{l}</li>
           ))}
         </ul>
-      </details>
+      </ResearchDisclosure>
     </section>
   );
 }
@@ -355,9 +388,6 @@ export function Results({
               <Download data-icon="inline-start" />
               Download FASTA
             </Button>
-            <span className="caption">
-              All {result.export_candidates.length} ranked candidates
-            </span>
           </div>
           <CandidateDetail candidate={candidate} analysis={analysis} />
         </>
@@ -396,9 +426,11 @@ export function EvidencePanel({
           validated downstream targets are different evidence types.
         </p>
       </div>
-      <Note>
-        <strong>{e.level[0]}.</strong> {e.level[1]}
-      </Note>
+      {e.level[0] !== "Known-like" && (
+        <Note>
+          <strong>{e.level[0]}.</strong> {e.level[1]}
+        </Note>
+      )}
       <DataTable
         head={["Layer", "Status", "What it supports", "What it does not prove"]}
         rows={[
@@ -840,13 +872,11 @@ export function EvaluationPanel({ metrics }: { metrics: Metrics }) {
           ])}
         />
       </section>
-      <details>
-        <summary>Dataset composition and limitations</summary>
-        <pre>{JSON.stringify(metrics.dataset, null, 2)}</pre>
-      </details>
-      {metrics.limitations.map((l) => (
-        <Note key={l}>{l}</Note>
-      ))}
+      <ResearchDisclosure title="Dataset composition and limitations">
+        <pre tabIndex={0} role="region" aria-label="Dataset composition">
+          {JSON.stringify(metrics.dataset, null, 2)}
+        </pre>
+      </ResearchDisclosure>
     </div>
   );
 }

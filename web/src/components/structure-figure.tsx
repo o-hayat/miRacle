@@ -153,7 +153,7 @@ export function StructureFigure({
           <polyline
             points={points.map((p) => p.join(",")).join(" ")}
             fill="none"
-            stroke="#d8ddd9"
+            stroke="var(--structure-backbone)"
             strokeWidth="1.5"
           />
         )}
@@ -170,7 +170,11 @@ export function StructureFigure({
                   : `M${a[0]} ${a[1]}L${b[0]} ${b[1]}`
               }
               fill="none"
-              stroke={active === i || active === j ? "#166b53" : "#c3cbc7"}
+              stroke={
+                active === i || active === j
+                  ? "var(--figure-teal)"
+                  : "var(--structure-pair)"
+              }
               strokeWidth={active === i || active === j ? 3 : 1.5}
             />
           );
@@ -188,10 +192,10 @@ export function StructureFigure({
               r={active === i || partner === i ? 11 : 8}
               fill={
                 active === i || partner === i
-                  ? "#e0ece5"
+                  ? "var(--structure-active)"
                   : signature
                     ? "var(--figure)"
-                    : "white"
+                    : "var(--background)"
               }
             />
             <text
@@ -199,7 +203,9 @@ export function StructureFigure({
               y={y + 4}
               textAnchor="middle"
               fill={
-                signature ? armColor(i) : BASE_COLORS[candidate.sequence_rna[i]]
+                signature
+                  ? armColor(i)
+                  : `var(--base-${candidate.sequence_rna[i].toLowerCase()})`
               }
               fontFamily="var(--font-mono)"
               fontSize="12"
@@ -275,8 +281,11 @@ export function StructureFigure({
         ) : (
           <>
             <span className="base-legend">
-              {Object.entries(BASE_COLORS).map(([base, color]) => (
-                <span key={base} style={{ color }}>
+              {Object.keys(BASE_COLORS).map((base) => (
+                <span
+                  key={base}
+                  style={{ color: `var(--base-${base.toLowerCase()})` }}
+                >
                   {base}
                 </span>
               ))}

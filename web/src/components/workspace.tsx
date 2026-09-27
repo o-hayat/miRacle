@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Button, buttonVariants } from "./ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { ThemeMenu } from "./theme-menu";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "./ui/field";
 import {
   Select,
@@ -47,7 +48,7 @@ import {
   type Metrics,
 } from "./research-panels";
 import { useAnalysis } from "@/hooks/use-analysis";
-import { loadAsset, requestKey } from "@/lib/analysis/assets";
+import { loadAsset } from "@/lib/analysis/assets";
 import { inferInputType } from "@/lib/analysis/sequence";
 import { CHROMOSOMES, fetchRegion } from "@/lib/analysis/genome";
 import { evidenceLevel } from "@/lib/analysis/evidence";
@@ -120,7 +121,7 @@ function Choice({
         <SelectTrigger id={id} className="w-full">
           <SelectValue />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent listLabel={label}>
           <SelectGroup>
             {items.map((item) => (
               <SelectItem key={item.value} value={item.value}>
@@ -191,8 +192,7 @@ export function Workspace({
     [snapshot, setSnapshot] = useState({ text: "", mask: "" });
   const [message, setMessage] = useState(""),
     [inputError, setInputError] = useState(""),
-    [regionBusy, setRegionBusy] = useState(false),
-    [savedBusy, setSavedBusy] = useState(false);
+    [regionBusy, setRegionBusy] = useState(false);
   const [evidence, setEvidence] = useState<EvidenceAsset | null>(null),
     [evidenceError, setEvidenceError] = useState("");
   const [positive, setPositive] = useState(POSITIVES[0].value),
@@ -234,7 +234,6 @@ export function Workspace({
     scan.cancel();
     region.current?.abort();
     setRegionBusy(false);
-    setSavedBusy(false);
     setInputError("");
     scan.setError("");
     setMessage("");
@@ -262,41 +261,6 @@ export function Workspace({
       setMessage("Analysis complete.");
     } catch {
       /* The worker exposes actionable errors. */
-    }
-  }
-  async function saved() {
-    invalidate();
-    const current = generation.current;
-    setSavedBusy(true);
-    try {
-      const exampleData = examples.find((e) => e.name === example)!;
-      const result = await loadAsset<BrowserAnalysis>(
-        manifest,
-        exampleData.saved,
-      );
-      const key = await requestKey(text, options(text, mask), manifest);
-      if (current !== generation.current) return;
-      if (
-        result.provenance.key !== key ||
-        result.provenance.data !== manifest.version ||
-        result.provenance.engine !== manifest.engine
-      )
-        throw new Error(
-          "This saved result does not match the current sequence, genomic context, or preprocessing. Run a new candidate scan.",
-        );
-      setAnalysis(result);
-      setSelected("candidate-1");
-      setSnapshot({ text, mask });
-      setMessage(
-        "Saved example loaded. Runtime reflects the Python reference run.",
-      );
-    } catch (e) {
-      if (current === generation.current)
-        setInputError(
-          e instanceof Error ? e.message : "Could not load the saved example.",
-        );
-    } finally {
-      if (current === generation.current) setSavedBusy(false);
     }
   }
   async function loadRegion() {
@@ -360,7 +324,6 @@ export function Workspace({
       <header className="site-header">
         <a className="wordmark" href="#top" aria-label="miRacle home">
           miRacle
-          <span className="wordmark-dot" />
         </a>
         <nav aria-label="Main navigation">
           <a className="nav-link" href="#workspace">
@@ -377,11 +340,11 @@ export function Workspace({
           </button>
           <a
             href="https://github.com/o-hayat/miRacle"
-            className={cn(buttonVariants(), "source-link")}
+            className={cn(buttonVariants({ size: "lg" }), "source-link")}
             data-slot="button"
           >
             <GitHubMark data-icon="inline-start" />
-            GitHub
+            Github Repository
           </a>
         </nav>
       </header>
@@ -569,7 +532,7 @@ export function Workspace({
                         <Button
                           size="lg"
                           onClick={run}
-                          disabled={scan.busy || regionBusy || savedBusy}
+                          disabled={scan.busy || regionBusy}
                         >
                           Run candidate scan
                           <ArrowRight data-icon="inline-end" />
@@ -611,13 +574,6 @@ export function Workspace({
                           }}
                         />
                       </div>
-                      <Button
-                        variant="link"
-                        disabled={scan.busy || savedBusy || regionBusy}
-                        onClick={saved}
-                      >
-                        {savedBusy ? "Loading…" : "View saved example"}
-                      </Button>
                     </div>
                   </FieldGroup>
                   <div className="input-options">
@@ -899,8 +855,11 @@ export function Workspace({
         <a className="wordmark" href="#top">
           miRacle
         </a>
-        <p>Sequence-first research. Evidence-led decisions.</p>
-        <span>Research prototype · Human pre-miRNA triage</span>
+        <div className="footer-copy">
+          <p>Sequence-first research. Evidence-led decisions.</p>
+          <span>Research prototype · Human pre-miRNA triage</span>
+        </div>
+        <ThemeMenu />
       </footer>
     </>
   );

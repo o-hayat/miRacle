@@ -55,7 +55,7 @@ artifacts/tmp/
 node_modules/
 .next/
 web/out/
-web/test-results/
+web/test-results*/
 web/playwright-report/
 *.tsbuildinfo
 .vercel/

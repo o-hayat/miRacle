@@ -5,6 +5,7 @@ import { execFileSync } from "node:child_process";
 import AxeBuilder from "@axe-core/playwright";
 import { WORKER_PATH } from "../../src/lib/worker-path";
 import type { BrowserAnalysis } from "../../src/lib/analysis/types";
+import { runAnalysis } from "./helpers";
 
 function compare(actual: unknown, expected: unknown, location = "result") {
   if (location.endsWith("runtime_ms")) return;
@@ -209,9 +210,7 @@ test("accessible initial page and loaded results", async ({ page }) => {
         .analyze()
     ).violations,
   ).toEqual([]);
-  await page
-    .getByRole("button", { name: "View saved example", exact: true })
-    .click();
+  await runAnalysis(page);
   await expect(
     page.getByRole("region", { name: "Analysis results" }),
   ).toBeVisible();

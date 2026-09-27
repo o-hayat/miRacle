@@ -17,9 +17,9 @@ function PlotUnavailable() {
 const FeatureSpace3D = lazy(() =>
   import("./feature-space-3d").catch(() => ({ default: PlotUnavailable })),
 );
-export const PLOT_BLUE = "#2c67c5";
-export const PLOT_TEAL = "#187e79";
-export const PLOT_AMBER = "#ae641b";
+export const PLOT_BLUE = "var(--chart-blue)";
+export const PLOT_TEAL = "var(--chart-teal)";
+export const PLOT_AMBER = "var(--chart-amber)";
 export function energyDomain(candidates: CandidateResult[]): [number, number] {
   const minimum =
     Math.floor(Math.min(...candidates.map((c) => c.features.mfe_per_nt)) * 10) /
@@ -218,7 +218,11 @@ export function CandidateLandscape({
                 cy={y(c.model_score)}
                 r={selected === c.id ? 8 : 6}
                 fill={c.strand === "+" ? PLOT_BLUE : PLOT_TEAL}
-                stroke={selected === c.id ? "#111" : "white"}
+                stroke={
+                  selected === c.id
+                    ? "var(--chart-selection)"
+                    : "var(--chart-surface)"
+                }
                 strokeWidth={selected === c.id ? 2 : 1.5}
               />
               {selected === c.id && (

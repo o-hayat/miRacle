@@ -4,7 +4,8 @@
       "/Users/julianschmidt/.nvm/versions/node/v24.15.0/bin/node",
       "/Users/julianschmidt/Documents/GitHub/MIR-NA/web/node_modules/.bin/playwright",
       "test",
-      "tests/browser/research-figures.spec.ts"
+      "--grep",
+      "theme choices|theme changes|dark theme|keyboard, reduced motion"
     ],
     "configFile": "/Users/julianschmidt/Documents/GitHub/MIR-NA/web/playwright.config.ts",
     "rootDir": "/Users/julianschmidt/Documents/GitHub/MIR-NA/web/tests/browser",
@@ -102,13 +103,13 @@
   },
   "suites": [
     {
-      "title": "research-figures.spec.ts",
-      "file": "research-figures.spec.ts",
+      "title": "theme.spec.ts",
+      "file": "theme.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [
         {
-          "title": "quiet input disclosures retain settings and saved-result validation",
+          "title": "theme choices persist and System follows the device without hydration errors",
           "ok": true,
           "tags": [],
           "tests": [
@@ -123,12 +124,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1320,
+                  "duration": 1334,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-27T00:21:56.949Z",
+                  "startTime": "2026-09-27T00:51:12.814Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -136,13 +137,13 @@
               "status": "expected"
             }
           ],
-          "id": "f339dd2acaf8569e0a99-63c1ac5c58115e1551f3",
-          "file": "research-figures.spec.ts",
-          "line": 23,
+          "id": "8168eb6e17e693d86faf-2da56fd03c3d6d90c29a",
+          "file": "theme.spec.ts",
+          "line": 15,
           "column": 1
         },
         {
-          "title": "research figures use reference values and preserve candidate selection",
+          "title": "theme changes preserve disclosures, candidates and the active 3D view",
           "ok": true,
           "tags": [],
           "tests": [
@@ -157,12 +158,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 592,
+                  "duration": 5439,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-27T00:21:58.836Z",
+                  "startTime": "2026-09-27T00:51:14.387Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -170,13 +171,13 @@
               "status": "expected"
             }
           ],
-          "id": "f339dd2acaf8569e0a99-abc68e7ed3f21be61766",
-          "file": "research-figures.spec.ts",
-          "line": 67,
+          "id": "8168eb6e17e693d86faf-724d25b83b34c9fa13f7",
+          "file": "theme.spec.ts",
+          "line": 70,
           "column": 1
         },
         {
-          "title": "3D feature view renders, supports keyboard controls and survives tab switches",
+          "title": "dark theme has accessible controls and research panels at desktop and phone widths",
           "ok": true,
           "tags": [],
           "tests": [
@@ -191,12 +192,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3249,
+                  "duration": 13955,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-27T00:21:59.433Z",
+                  "startTime": "2026-09-27T00:51:19.829Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -204,13 +205,225 @@
               "status": "expected"
             }
           ],
-          "id": "f339dd2acaf8569e0a99-a0a3e219a8f0dd02139a",
-          "file": "research-figures.spec.ts",
-          "line": 140,
+          "id": "8168eb6e17e693d86faf-c4df8a12608d40382b62",
+          "file": "theme.spec.ts",
+          "line": 121,
           "column": 1
         },
         {
-          "title": "unavailable WebGL leaves 2D research figures usable",
+          "title": "theme choices persist and System follows the device without hydration errors",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1517,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-27T00:51:34.549Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8168eb6e17e693d86faf-0ba38ef8e2a1259c9d2f",
+          "file": "theme.spec.ts",
+          "line": 15,
+          "column": 1
+        },
+        {
+          "title": "theme changes preserve disclosures, candidates and the active 3D view",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4810,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-27T00:51:36.786Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8168eb6e17e693d86faf-c8a9bc02e0d39ebda6de",
+          "file": "theme.spec.ts",
+          "line": 70,
+          "column": 1
+        },
+        {
+          "title": "dark theme has accessible controls and research panels at desktop and phone widths",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 17597,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-27T00:51:41.599Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8168eb6e17e693d86faf-a3dfd18c316225291857",
+          "file": "theme.spec.ts",
+          "line": 121,
+          "column": 1
+        },
+        {
+          "title": "theme choices persist and System follows the device without hydration errors",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1757,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-27T00:52:00.111Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8168eb6e17e693d86faf-8d96ee31874aad483a1f",
+          "file": "theme.spec.ts",
+          "line": 15,
+          "column": 1
+        },
+        {
+          "title": "theme changes preserve disclosures, candidates and the active 3D view",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4983,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-27T00:52:02.477Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8168eb6e17e693d86faf-ba3322d2b6dd93573f4f",
+          "file": "theme.spec.ts",
+          "line": 70,
+          "column": 1
+        },
+        {
+          "title": "dark theme has accessible controls and research panels at desktop and phone widths",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15705,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-27T00:52:07.466Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8168eb6e17e693d86faf-d1e2314b2b9732c0fb1f",
+          "file": "theme.spec.ts",
+          "line": 121,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "workflows.spec.ts",
+      "file": "workflows.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "keyboard, reduced motion and responsive screenshots",
           "ok": true,
           "tags": [],
           "tests": [
@@ -225,12 +438,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 812,
+                  "duration": 497,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-27T00:22:02.685Z",
+                  "startTime": "2026-09-27T00:51:33.796Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -238,81 +451,13 @@
               "status": "expected"
             }
           ],
-          "id": "f339dd2acaf8569e0a99-c2220f2d3616d1ddceb8",
-          "file": "research-figures.spec.ts",
-          "line": 179,
+          "id": "26aa48cee8983222f549-0b167416c7c0251158b2",
+          "file": "workflows.spec.ts",
+          "line": 228,
           "column": 1
         },
         {
-          "title": "research figures remain readable and accessible at review widths",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 120000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "chromium",
-              "projectName": "chromium",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 7558,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-27T00:22:03.503Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "f339dd2acaf8569e0a99-2172493a979200c6c8d3",
-          "file": "research-figures.spec.ts",
-          "line": 206,
-          "column": 1
-        },
-        {
-          "title": "3D stays optional when its on-demand download fails",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 120000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "chromium",
-              "projectName": "chromium",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1220,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-27T00:22:11.065Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "f339dd2acaf8569e0a99-61f1183695625008d79a",
-          "file": "research-figures.spec.ts",
-          "line": 232,
-          "column": 1
-        },
-        {
-          "title": "quiet input disclosures retain settings and saved-result validation",
+          "title": "keyboard, reduced motion and responsive screenshots",
           "ok": true,
           "tags": [],
           "tests": [
@@ -327,12 +472,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2469,
+                  "duration": 481,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-27T00:22:12.586Z",
+                  "startTime": "2026-09-27T00:51:59.206Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -340,183 +485,13 @@
               "status": "expected"
             }
           ],
-          "id": "f339dd2acaf8569e0a99-b8499b04cd9d51f7ed0d",
-          "file": "research-figures.spec.ts",
-          "line": 23,
+          "id": "26aa48cee8983222f549-6b6c82c94d34d938b788",
+          "file": "workflows.spec.ts",
+          "line": 228,
           "column": 1
         },
         {
-          "title": "research figures use reference values and preserve candidate selection",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 120000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "firefox",
-              "projectName": "firefox",
-              "results": [
-                {
-                  "workerIndex": 1,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 789,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-27T00:22:16.027Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "f339dd2acaf8569e0a99-992ea27ee308a4fbf43d",
-          "file": "research-figures.spec.ts",
-          "line": 67,
-          "column": 1
-        },
-        {
-          "title": "3D feature view renders, supports keyboard controls and survives tab switches",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 120000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "firefox",
-              "projectName": "firefox",
-              "results": [
-                {
-                  "workerIndex": 1,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 2508,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-27T00:22:16.820Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "f339dd2acaf8569e0a99-eda53427a4ad9fe18ed9",
-          "file": "research-figures.spec.ts",
-          "line": 140,
-          "column": 1
-        },
-        {
-          "title": "unavailable WebGL leaves 2D research figures usable",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 120000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "firefox",
-              "projectName": "firefox",
-              "results": [
-                {
-                  "workerIndex": 1,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 891,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-27T00:22:19.332Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "f339dd2acaf8569e0a99-51edb6e324afeea6a98c",
-          "file": "research-figures.spec.ts",
-          "line": 179,
-          "column": 1
-        },
-        {
-          "title": "research figures remain readable and accessible at review widths",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 120000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "firefox",
-              "projectName": "firefox",
-              "results": [
-                {
-                  "workerIndex": 1,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 9876,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-27T00:22:20.226Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "f339dd2acaf8569e0a99-9867dee4c9fc218d6f0d",
-          "file": "research-figures.spec.ts",
-          "line": 206,
-          "column": 1
-        },
-        {
-          "title": "3D stays optional when its on-demand download fails",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 120000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "firefox",
-              "projectName": "firefox",
-              "results": [
-                {
-                  "workerIndex": 1,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1014,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-27T00:22:30.105Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "f339dd2acaf8569e0a99-208a69adf3b02127438a",
-          "file": "research-figures.spec.ts",
-          "line": 232,
-          "column": 1
-        },
-        {
-          "title": "quiet input disclosures retain settings and saved-result validation",
+          "title": "keyboard, reduced motion and responsive screenshots",
           "ok": true,
           "tags": [],
           "tests": [
@@ -531,12 +506,12 @@
                   "workerIndex": 2,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1369,
+                  "duration": 784,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-27T00:22:31.520Z",
+                  "startTime": "2026-09-27T00:52:23.183Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -544,179 +519,9 @@
               "status": "expected"
             }
           ],
-          "id": "f339dd2acaf8569e0a99-10913134ccbffe18ac16",
-          "file": "research-figures.spec.ts",
-          "line": 23,
-          "column": 1
-        },
-        {
-          "title": "research figures use reference values and preserve candidate selection",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 120000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "webkit",
-              "projectName": "webkit",
-              "results": [
-                {
-                  "workerIndex": 2,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 818,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-27T00:22:33.366Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "f339dd2acaf8569e0a99-b8e6614799c944d39ea2",
-          "file": "research-figures.spec.ts",
-          "line": 67,
-          "column": 1
-        },
-        {
-          "title": "3D feature view renders, supports keyboard controls and survives tab switches",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 120000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "webkit",
-              "projectName": "webkit",
-              "results": [
-                {
-                  "workerIndex": 2,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 2818,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-27T00:22:34.189Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "f339dd2acaf8569e0a99-60aa85c2306ffe75c286",
-          "file": "research-figures.spec.ts",
-          "line": 140,
-          "column": 1
-        },
-        {
-          "title": "unavailable WebGL leaves 2D research figures usable",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 120000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "webkit",
-              "projectName": "webkit",
-              "results": [
-                {
-                  "workerIndex": 2,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 943,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-27T00:22:37.010Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "f339dd2acaf8569e0a99-43024f35db02359e0442",
-          "file": "research-figures.spec.ts",
-          "line": 179,
-          "column": 1
-        },
-        {
-          "title": "research figures remain readable and accessible at review widths",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 120000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "webkit",
-              "projectName": "webkit",
-              "results": [
-                {
-                  "workerIndex": 2,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 8105,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-27T00:22:37.957Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "f339dd2acaf8569e0a99-a7be7e0ea316a49532ef",
-          "file": "research-figures.spec.ts",
-          "line": 206,
-          "column": 1
-        },
-        {
-          "title": "3D stays optional when its on-demand download fails",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 120000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "webkit",
-              "projectName": "webkit",
-              "results": [
-                {
-                  "workerIndex": 2,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1350,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-09-27T00:22:46.066Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "f339dd2acaf8569e0a99-7dfba26aec4df500d933",
-          "file": "research-figures.spec.ts",
-          "line": 232,
+          "id": "26aa48cee8983222f549-ed9d19c2ff3b10fec3b9",
+          "file": "workflows.spec.ts",
+          "line": 228,
           "column": 1
         }
       ]
@@ -724,9 +529,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-09-27T00:21:56.696Z",
-    "duration": 50770.075000000004,
-    "expected": 18,
+    "startTime": "2026-09-27T00:51:12.541Z",
+    "duration": 71478.542,
+    "expected": 12,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

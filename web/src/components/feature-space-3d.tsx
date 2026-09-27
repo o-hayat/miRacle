@@ -47,8 +47,12 @@ export default function FeatureSpace3D({
         alive = false;
       };
     }
+    const color = (token: string) =>
+      getComputedStyle(container).getPropertyValue(token).trim();
+    const paletteBindings: (() => void)[] = [];
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color("#fafbfc");
+    const background = new THREE.Color(color("--chart-surface"));
+    scene.background = background;
     const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 50);
     camera.position.set(3.7, 2.7, 4.2);
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -67,24 +71,24 @@ export default function FeatureSpace3D({
     );
     renderer.domElement.setAttribute("role", "img");
     container.append(renderer.domElement);
-    const line = (a: number[], b: number[], color: string) => {
+    const line = (a: number[], b: number[], token: string) => {
       const geometry = new THREE.BufferGeometry().setFromPoints([
         new THREE.Vector3(...a),
         new THREE.Vector3(...b),
       ]);
-      scene.add(
-        new THREE.Line(geometry, new THREE.LineBasicMaterial({ color })),
-      );
+      const material = new THREE.LineBasicMaterial({ color: color(token) });
+      paletteBindings.push(() => material.color.set(color(token)));
+      scene.add(new THREE.Line(geometry, material));
     };
     for (let step = 0; step <= 4; step++) {
       const t = -1 + step / 2;
-      line([-1, -1, t], [1, -1, t], "#dfe4e8");
-      line([t, -1, -1], [t, -1, 1], "#dfe4e8");
-      line([-1, t, -1], [1, t, -1], "#e4e8ec");
+      line([-1, -1, t], [1, -1, t], "--chart-grid");
+      line([t, -1, -1], [t, -1, 1], "--chart-grid");
+      line([-1, t, -1], [1, t, -1], "--chart-grid");
     }
-    line([-1, -1, -1], [1.12, -1, -1], "#2c67c5");
-    line([-1, -1, -1], [-1, 1.12, -1], "#187e79");
-    line([-1, -1, -1], [-1, -1, 1.12], "#ae641b");
+    line([-1, -1, -1], [1.12, -1, -1], "--chart-blue");
+    line([-1, -1, -1], [-1, 1.12, -1], "--chart-teal");
+    line([-1, -1, -1], [-1, -1, 1.12], "--chart-amber");
     const textures: THREE.Texture[] = [];
     const label = (
       text: string,
@@ -100,10 +104,16 @@ export default function FeatureSpace3D({
       context.font = "32px Inter, sans-serif";
       context.textAlign = "center";
       context.textBaseline = "middle";
-      context.fillStyle = "#4b5560";
-      context.fillText(text, canvas.width / 2, 32);
       const texture = new THREE.CanvasTexture(canvas);
       texture.colorSpace = THREE.SRGBColorSpace;
+      const redraw = () => {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.fillStyle = color("--chart-label");
+        context.fillText(text, canvas.width / 2, 32);
+        texture.needsUpdate = true;
+      };
+      redraw();
+      paletteBindings.push(redraw);
       textures.push(texture);
       const sprite = new THREE.Sprite(
         new THREE.SpriteMaterial({ map: texture, depthTest: false }),
@@ -126,7 +136,9 @@ export default function FeatureSpace3D({
       const point = new THREE.Mesh(
         geometry,
         new THREE.MeshBasicMaterial({
-          color: candidate.strand === "+" ? "#2c67c5" : "#187e79",
+          color: color(
+            candidate.strand === "+" ? "--chart-blue" : "--chart-teal",
+          ),
         }),
       );
       point.position.set(
@@ -140,7 +152,7 @@ export default function FeatureSpace3D({
       line(
         [point.position.x, -1, point.position.z],
         point.position.toArray(),
-        "#d3dce6",
+        "--chart-grid",
       );
       point.userData.label = label(
         String(candidate.rank),
@@ -159,11 +171,13 @@ export default function FeatureSpace3D({
         if (point.userData.label) point.userData.label.visible = active;
         point.scale.setScalar(active ? 1.8 : 1);
         point.material.color.set(
-          active
-            ? "#b56619"
-            : candidates[index].strand === "+"
-              ? "#2c67c5"
-              : "#187e79",
+          color(
+            active
+              ? "--chart-amber"
+              : candidates[index].strand === "+"
+                ? "--chart-blue"
+                : "--chart-teal",
+          ),
         );
       });
       render();
@@ -224,6 +238,15 @@ export default function FeatureSpace3D({
       },
       select,
     };
+    const themeObserver = new MutationObserver(() => {
+      background.set(color("--chart-surface"));
+      paletteBindings.forEach((update) => update());
+      select(selection.current);
+    });
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
     resize();
     select(selection.current);
     queueMicrotask(() => {
@@ -232,6 +255,7 @@ export default function FeatureSpace3D({
     return () => {
       alive = false;
       observer.disconnect();
+      themeObserver.disconnect();
       controls.dispose();
       controlsRef.current = null;
       renderer.domElement.removeEventListener("pointerdown", down);

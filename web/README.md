@@ -15,6 +15,8 @@ bun run preview
 
 Open http://127.0.0.1:3000. `bun run dev` is also available. The production preview serves `out/`; it does not run a Next.js server. Fonts, models, reference indexes, evidence, bundled controls, and annotations are self-hosted. Computational assets download on the first analysis. Unbundled hg38 intervals use UCSC directly.
 
+The footer offers Light, Dark, and System themes. System is the initial default; the selected preference is saved in this browser. System follows the device appearance, including changes while the page is open. Interface controls and scientific figures share theme tokens, while downloaded SVGs keep a light document background.
+
 ## Reproduce the scientific artifacts
 
 Python 3.12.13, `make`, a C/C++ build environment, `pkg-config`, Git, curl, and tar are required. macOS can install the missing pkg-config tool with `brew install pkgconf`; Linux distributions provide it through their package manager.
@@ -77,7 +79,7 @@ The default deploy command creates a preview; it does not publish to production.
 
 The five workflows retain their original labels/defaults and candidate state. Browser analysis uses the 60/70/90/110 nt RNAfold scanning path; RNALfold remains available in Python. RNA containing U and no T scans only its submitted strand. Genomic input scans both strands. `N` divides foldable segments while preserving full-input coordinates. Coding-region exclusion requires trustworthy length-matched genomic coordinates.
 
-Cancelling terminates the worker. Request IDs and UI generations prevent late results or downloads from replacing newer inputs. The previous result remains explicitly marked if inputs change. Saved results are accepted only when the sequence, description/genomic context, identifier, preprocessing, input type, and engine/data versions match.
+Cancelling terminates the worker. Request IDs and UI generations prevent late results or downloads from replacing newer inputs. The previous result remains explicitly marked if inputs change. Discover uses the live scan action; the separate saved-example action was removed after interface review. Bundled analyses remain in the scientific release for reproducibility and parity checks.
 
 The supplied template is retained as a vendored review directory, with its original commit recorded in `design-references/openai/REFERENCE-README.md`. Its generated routes and captures are included in the branch diff. The five supplied OpenAI research references are mapped to their original routes in `design-references/openai/docs/output-plan.json`. Browser inspection and clone verification are tracked separately from scientific parity. Temporary downloads, build scratch, and prior generated versions remain in `artifacts/tmp/` pending the requested cleanup approval.
 

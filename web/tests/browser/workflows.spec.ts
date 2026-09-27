@@ -2,6 +2,7 @@ import { test, expect, type Page } from "@playwright/test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { WORKER_PATH } from "../../src/lib/worker-path";
+import { runAnalysis } from "./helpers";
 
 function csvCells(line: string) {
   const cells: string[] = [];
@@ -126,7 +127,7 @@ test("live scan, candidate state, evidence, exports and comparison", async ({
   expect(errors).toEqual([]);
 });
 
-test("saved results require identical inputs and uploads preserve local privacy", async ({
+test("changed inputs mark previous results and uploads preserve local privacy", async ({
   page,
 }) => {
   const sent: string[] = [];
@@ -134,20 +135,12 @@ test("saved results require identical inputs and uploads preserve local privacy"
     if (r.method() !== "GET") sent.push(r.url());
   });
   await page.goto("/");
-  await page
-    .getByRole("button", { name: "View saved example", exact: true })
-    .click();
-  await expect(
-    page.getByText("Saved example result", { exact: true }),
-  ).toBeVisible();
+  await runAnalysis(page);
   await page
     .getByLabel("Sequence or FASTA", { exact: true })
     .fill("A".repeat(60));
-  await page
-    .getByRole("button", { name: "View saved example", exact: true })
-    .click();
   await expect(
-    page.getByText(/This saved result does not match/),
+    page.getByText(/The input or preprocessing has changed/),
   ).toBeVisible();
   await page.getByLabel("Upload one FASTA or text record").setInputFiles({
     name: "control.fa",

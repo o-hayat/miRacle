@@ -12,6 +12,8 @@ The GitHub button uses Primer Octicons' `mark-github-16` SVG, copyright GitHub I
 
 The optional 3D candidate feature plot uses Three.js 0.186.1 and OrbitControls, copyright the Three.js authors, under the MIT license. Its notice is retained in `public/licenses/Three-MIT.txt`. It plots measured energy, ranking score, and paired fraction; it does not provide molecular tertiary coordinates. Three.js loads only when the visitor chooses 3D.
 
+Theme persistence, early theme application, and system appearance changes use next-themes 0.4.6, copyright Paco Coursey, under the MIT license. The notice is retained in `public/licenses/Next-Themes-MIT.txt`. The footer menu uses shadcn's Base UI dropdown component.
+
 ## Scientific implementation
 
 The scientific reference is the unchanged `mirna_app/` Python implementation. The original trained model is retained without retraining. `scripts/export_browser_assets.py` verifies sklearn's StandardScaler + binary LogisticRegression schema before exporting.

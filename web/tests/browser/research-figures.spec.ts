@@ -1,6 +1,7 @@
 import { test, expect, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import fs from "node:fs";
+import { runAnalysis } from "./helpers";
 
 const fixture = JSON.parse(
   fs.readFileSync("tests/fixtures/mir21_region-cds.json", "utf8"),
@@ -10,17 +11,15 @@ const metrics = JSON.parse(
   fs.readFileSync("../artifacts/evaluation/metrics.json", "utf8"),
 );
 
-async function saved(page: Page) {
+async function analyze(page: Page) {
   await page.goto("/");
-  await page
-    .getByRole("button", { name: "View saved example", exact: true })
-    .click();
+  await runAnalysis(page);
   await expect(
     page.getByRole("region", { name: "Analysis results" }),
   ).toBeVisible();
 }
 
-test("quiet input disclosures retain settings and saved-result validation", async ({
+test("transparent input disclosures retain settings and reference controls", async ({
   page,
 }) => {
   await page.goto("/");
@@ -34,6 +33,8 @@ test("quiet input disclosures retain settings and saved-result validation", asyn
   });
   await expect(settings).toHaveAttribute("aria-expanded", "false");
   await expect(references).toHaveAttribute("aria-expanded", "false");
+  await expect(settings).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+  await expect(references).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
   await expect(
     page.getByRole("combobox", { name: "Protein-region preprocessing" }),
   ).toBeHidden();
@@ -49,12 +50,9 @@ test("quiet input disclosures retain settings and saved-result validation", asyn
   await expect(settings).toContainText("No masking");
   await settings.click();
   await expect(mask).toContainText("Do not mask protein regions");
-  await page
-    .getByRole("button", { name: "View saved example", exact: true })
-    .click();
   await expect(
-    page.getByText(/This saved result does not match/),
-  ).toBeVisible();
+    page.getByRole("button", { name: "View saved example", exact: true }),
+  ).toHaveCount(0);
   await references.click();
   await expect(
     page.getByRole("combobox", { name: "Example", exact: true }),
@@ -67,7 +65,27 @@ test("quiet input disclosures retain settings and saved-result validation", asyn
 test("research figures use reference values and preserve candidate selection", async ({
   page,
 }) => {
-  await saved(page);
+  await analyze(page);
+  const notation = page.getByRole("button", {
+    name: "Sequence and dot-bracket notation",
+    exact: true,
+  });
+  await expect(notation).toHaveAttribute("aria-expanded", "false");
+  await notation.focus();
+  await page.keyboard.press("Enter");
+  await expect(page.locator(".sequence-code")).toHaveText(
+    `${candidates[0].sequence_rna}\n${candidates[0].dot_bracket}`,
+  );
+  await notation.click();
+  await expect(page.locator(".sequence-code")).toBeHidden();
+  const missingEvidence = page.getByRole("button", {
+    name: "Evidence this analysis does not provide",
+    exact: true,
+  });
+  await missingEvidence.click();
+  await expect(page.locator(".limitations ul")).toBeVisible();
+  await missingEvidence.click();
+  await expect(page.locator(".limitations ul")).toBeHidden();
   await page
     .getByRole("button", {
       name: "Inspect candidate 2 on position map",
@@ -107,6 +125,17 @@ test("research figures use reference values and preserve candidate selection", a
     ).toHaveAttribute("aria-valuenow", String(match.coverage * 100));
   }
   await page.getByRole("tab", { name: "Evaluation", exact: true }).click();
+  const dataset = page.getByRole("button", {
+    name: "Dataset composition and limitations",
+    exact: true,
+  });
+  await expect(dataset).toHaveAttribute("aria-expanded", "false");
+  await dataset.focus();
+  await page.keyboard.press("Space");
+  await expect(
+    page.getByRole("region", { name: "Dataset composition", exact: true }),
+  ).toContainText(JSON.stringify(metrics.dataset, null, 2));
+  await dataset.click();
   const matrix = page.getByRole("table", {
     name: "Confusion matrix for Logistic regression",
     exact: true,
@@ -143,7 +172,7 @@ test("3D feature view renders, supports keyboard controls and survives tab switc
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await saved(page);
+  await analyze(page);
   await expect(page.locator(".three-canvas")).toHaveCount(0);
   await page.getByRole("button", { name: "3D", exact: true }).click();
   await expect(page.locator('.three-canvas[data-ready="true"]')).toBeVisible();
@@ -189,7 +218,7 @@ test("unavailable WebGL leaves 2D research figures usable", async ({
       return original.apply(this, args);
     } as typeof original;
   });
-  await saved(page);
+  await analyze(page);
   await page.getByRole("button", { name: "3D", exact: true }).click();
   await expect(
     page.getByText(
@@ -206,7 +235,7 @@ test("unavailable WebGL leaves 2D research figures usable", async ({
 test("research figures remain readable and accessible at review widths", async ({
   page,
 }, info) => {
-  await saved(page);
+  await analyze(page);
   for (const width of [390, 768, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
     for (const [tab, selector] of [
@@ -245,7 +274,7 @@ test("3D stays optional when its on-demand download fails", async ({
   expect(rendererChunks.length).toBeGreaterThan(0);
   const requested: string[] = [];
   page.on("request", (request) => requested.push(request.url()));
-  await saved(page);
+  await analyze(page);
   expect(
     requested.some((url) =>
       rendererChunks.some((file) => url.endsWith(`/${file}`)),
