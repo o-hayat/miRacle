@@ -195,7 +195,7 @@ test("3D feature view renders, supports keyboard controls and survives tab switc
     }),
   ).toHaveAttribute("aria-pressed", "true");
   await page.locator(".feature-figure").screenshot({
-    path: `../docs/review/research-3d-${info.project.name}.png`,
+    path: info.outputPath(`research-3d-${info.project.name}.png`),
   });
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   await page.getByRole("button", { name: "2D", exact: true }).click();
@@ -252,7 +252,9 @@ test("research figures remain readable and accessible at review widths", async (
       ).toBe(true);
       expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
       await page.locator(selector).screenshot({
-        path: `../docs/review/research-${tab.toLowerCase()}-${info.project.name}-${width}.png`,
+        path: info.outputPath(
+          `research-${tab.toLowerCase()}-${info.project.name}-${width}.png`,
+        ),
       });
     }
   }

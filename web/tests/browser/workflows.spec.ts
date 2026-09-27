@@ -254,7 +254,7 @@ test("keyboard, reduced motion and responsive screenshots", async ({
       ),
     ).toBe(true);
     await page.screenshot({
-      path: `../docs/review/${info.project.name}-${width}.png`,
+      path: info.outputPath(`${info.project.name}-${width}.png`),
       fullPage: true,
     });
   }

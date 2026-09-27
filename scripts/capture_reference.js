@@ -1,7 +1,0 @@
-(() => {
- const props=['fontFamily','fontSize','fontWeight','lineHeight','letterSpacing','color','backgroundColor','borderRadius','padding','margin','maxWidth','width','height','display','gap','position','top','transition'];
- const pick=e=>{const c=getComputedStyle(e),b=e.getBoundingClientRect();return {tag:e.tagName,text:e.textContent?.slice(0,180),classes:typeof e.className==='string'?e.className:'',box:{x:b.x,y:b.y+scrollY,width:b.width,height:b.height},styles:Object.fromEntries(props.map(k=>[k,c[k]]))}};
- const body=document.body.cloneNode(true);body.querySelectorAll('script,iframe:not([src]),iframe[src=""],noscript').forEach(x=>x.remove());
- const capture={url:location.href,title:document.title,viewport:[innerWidth,innerHeight],scroll:scrollY,bodyClass:document.body.className,htmlAttrs:[...document.documentElement.attributes].map(a=>[a.name,a.value]),body:body.innerHTML,styles:[...document.querySelectorAll('h1,h2,h3,main p,main button,main a,header,main nav,main figure')].map(pick),sheets:[...document.styleSheets].map(s=>({href:s.href,css:(()=>{try{return [...s.cssRules].map(r=>r.cssText).join('\n')}catch{return null}})()})),images:[...document.images].map(x=>({src:x.currentSrc||x.src,alt:x.alt,width:x.naturalWidth,height:x.naturalHeight})),videos:[...document.querySelectorAll('video,source,audio')].map(x=>({tag:x.tagName,src:x.src,poster:x.poster})),fonts:[...document.fonts].map(x=>({family:x.family,weight:x.weight,status:x.status}))};
- return JSON.stringify(capture);
-})()

@@ -87,7 +87,7 @@ test("all 60 bundled control/preprocessing outputs match Python in the exported 
     });
   }
   fs.writeFileSync(
-    `../docs/review/parity-${info.project.name}.json`,
+    info.outputPath(`parity-${info.project.name}.json`),
     JSON.stringify(times, null, 2),
   );
 });
@@ -179,7 +179,7 @@ test("20,000 nt stays responsive and records runtime and memory", async ({
     expect(output.ticks).toBeGreaterThan(20);
     expect(output.maxTickGapMs).toBeLessThan(1000);
     fs.writeFileSync(
-      `../docs/review/performance-${info.project.name}.json`,
+      info.outputPath(`performance-${info.project.name}.json`),
       JSON.stringify(
         {
           inputLength: 20000,

@@ -107,7 +107,7 @@ test("theme changes preserve disclosures, candidates and the active 3D view", as
   expect(dark.equals(light)).toBe(false);
   await page
     .locator(".feature-figure")
-    .screenshot({ path: `../docs/review/theme-3d-${info.project.name}.png` });
+    .screenshot({ path: info.outputPath(`theme-3d-${info.project.name}.png`) });
   await theme(page, "Light");
   await expect(
     page.getByRole("button", {
@@ -141,7 +141,9 @@ test("dark theme has accessible controls and research panels at desktop and phon
       ).toBe(true);
       expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
       await page.locator("#workspace").screenshot({
-        path: `../docs/review/theme-${tab.toLowerCase().replaceAll(" ", "-")}-${info.project.name}-${width}.png`,
+        path: info.outputPath(
+          `theme-${tab.toLowerCase().replaceAll(" ", "-")}-${info.project.name}-${width}.png`,
+        ),
       });
     }
     await page
@@ -159,7 +161,7 @@ test("dark theme has accessible controls and research panels at desktop and phon
       ).violations,
     ).toEqual([]);
     await page.screenshot({
-      path: `../docs/review/theme-menu-${info.project.name}-${width}.png`,
+      path: info.outputPath(`theme-menu-${info.project.name}-${width}.png`),
     });
     const guardRedirects = await page
       .locator('[data-base-ui-focus-guard][tabindex="0"]')
@@ -195,7 +197,7 @@ test("dark theme has accessible controls and research panels at desktop and phon
       ).violations,
     ).toEqual([]);
     await page.screenshot({
-      path: `../docs/review/theme-dropdown-${info.project.name}-${width}.png`,
+      path: info.outputPath(`theme-dropdown-${info.project.name}-${width}.png`),
     });
     await page.keyboard.press("Escape");
     await expect(page.locator('[data-slot="select-content"]')).toBeHidden();

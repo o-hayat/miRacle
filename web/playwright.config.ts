@@ -7,7 +7,7 @@ export default defineConfig({
   workers: 1,
   reporter: [
     ["list"],
-    ["json", { outputFile: "../docs/review/browser-results.json" }],
+    ["json", { outputFile: "playwright-report/results.json" }],
   ],
   use: {
     baseURL: "http://127.0.0.1:3000",

@@ -2,7 +2,7 @@
 
 ## Interface foundation
 
-JCodesMore's [ai-website-cloner-template](https://github.com/JCodesMore/ai-website-cloner-template), commit `0fc4dca34fcfcfd32108fb67118aa897a6045414`, supplied the Next.js 16 / React 19 / Tailwind 4 / shadcn base. Its MIT license is retained in `TEMPLATE-LICENSE`. The review clone is vendored at `../design-references/openai`.
+JCodesMore's [ai-website-cloner-template](https://github.com/JCodesMore/ai-website-cloner-template), commit `0fc4dca34fcfcfd32108fb67118aa897a6045414`, supplied the Next.js 16 / React 19 / Tailwind 4 / shadcn base. Its MIT license is retained in `TEMPLATE-LICENSE`.
 
 The generated shadcn components use Base UI and were installed with shadcn 4.21.0. Local adjustments fix registry utility imports and apply the research typography, colors, and control states. All dependency versions are recorded in `bun.lock`.
 
@@ -28,7 +28,3 @@ Compiled with Emscripten 4.0.20, single-threaded, using native folding and NAVIE
 NumPy 1.26.4's indirect quicksort ordering is reproduced in `similarity.ts` so equal similarity values retain the pinned Python reference's shortlist behavior. The NumPy BSD notice is in `public/licenses/NumPy-BSD.txt`. Source: https://github.com/numpy/numpy/blob/v1.26.4/numpy/core/src/npysort/quicksort.cpp
 
 Data provenance, database versions, and scientific limitations remain documented in the repository's `DATA_SOURCES.md`. Each generated release includes SHA256 digests of the model, indexes, annotations, evidence, examples, source code, and WASM build. Saved results bind normalized sequence, genomic context, identifier, strand mode, masking mode, engine version, and data release.
-
-## Design references
-
-The five supplied OpenAI research articles were visually inspected and captured in the user-opened browser. Their original URLs, separate local routes, saved CSS/DOM, screenshots, and asset sources are recorded in `../design-references/openai/docs/output-plan.json` and `asset-provenance.json`. The reference directory is a local review artifact and is excluded from the production application's static export. OpenAI's logos, article content, images, and OpenAI Sans fonts remain in that reference directory. Production uses miRacle branding, the project's scientific data, Inter, and IBM Plex Mono.

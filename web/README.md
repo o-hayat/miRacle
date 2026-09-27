@@ -59,7 +59,7 @@ Browser tests run against `out/` in Chromium, Firefox, and WebKit. They cover th
 
 Discover keeps reference controls and preprocessing in expandable shadcn sections. The research figures use the displayed shortlist and the exported benchmark: candidate intervals, energy versus score, cross-species identity/coverage, and a confusion matrix with exact counts and row percentages. The optional Three.js view adds paired fraction as a third feature axis; it is not a molecular 3D model. It loads on demand, renders only during interaction, and offers a 2D fallback when WebGL is unavailable. `tests/browser/research-figures.spec.ts` checks the figure values, selection, disclosure state, keyboard controls, WebGL fallback, accessibility, and review widths.
 
-Screenshots and machine-readable reports are saved under `../docs/review/`. A passing test report does not turn a candidate score into biological validation.
+Screenshots and parity/performance JSON are saved under `test-results/`, and the run summary under `playwright-report/results.json`. Both are gitignored. A passing test report does not turn a candidate score into biological validation.
 
 ## Vercel
 
@@ -73,14 +73,12 @@ bun run deploy
 # Publish the reviewed deployment with the Vercel dashboard.
 ```
 
-The default deploy command creates a preview; it does not publish to production. Keep credentials outside source control. Source and reference clones remain on the feature branch for review. See `../docs/review/VERIFICATION.md` for the actual deployment and verification status.
+The default deploy command creates a preview; it does not publish to production. Keep credentials outside source control.
 
-## Boundaries and retained review materials
+## Boundaries
 
 The five workflows retain their original labels/defaults and candidate state. Browser analysis uses the 60/70/90/110 nt RNAfold scanning path; RNALfold remains available in Python. RNA containing U and no T scans only its submitted strand. Genomic input scans both strands. `N` divides foldable segments while preserving full-input coordinates. Coding-region exclusion requires trustworthy length-matched genomic coordinates.
 
 Cancelling terminates the worker. Request IDs and UI generations prevent late results or downloads from replacing newer inputs. The previous result remains explicitly marked if inputs change. Discover uses the live scan action; the separate saved-example action was removed after interface review. Bundled analyses remain in the scientific release for reproducibility and parity checks.
-
-The supplied template is retained as a vendored review directory, with its original commit recorded in `design-references/openai/REFERENCE-README.md`. Its generated routes and captures are included in the branch diff. The five supplied OpenAI research references are mapped to their original routes in `design-references/openai/docs/output-plan.json`. Browser inspection and clone verification are tracked separately from scientific parity. Temporary downloads, build scratch, and prior generated versions remain in `artifacts/tmp/` pending the requested cleanup approval.
 
 See [THIRD_PARTY.md](THIRD_PARTY.md) for the template, fonts, NumPy, ViennaRNA, and NAVIEW notices, and the repository's [DATA_SOURCES.md](../DATA_SOURCES.md) for scientific data provenance.
