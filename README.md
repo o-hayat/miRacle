@@ -7,7 +7,7 @@
 ![ViennaRNA 2.7](https://img.shields.io/badge/ViennaRNA-2.7-111111?style=flat-square)
 [![MIT License](https://img.shields.io/badge/license-MIT-d7ff64?style=flat-square)](LICENSE)
 
-![miRacle demo](web/public/miracle.mp4)
+[![Watch the miRacle demo](assets/readme/miracle-thumbnail.png)](assets/readme/miracle.mp4)
 
 miRacle turns a short DNA or RNA sequence, or a selected hg38 locus, into an
 explainable ranked shortlist of pre-miRNA-like hairpins. Fold candidates with
