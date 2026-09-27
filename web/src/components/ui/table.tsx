@@ -12,7 +12,7 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
       role="group"
       aria-label={
         props["aria-label"] ??
-        "Data table — scroll horizontally for more columns"
+        "Data table: scroll horizontally for more columns"
       }
     >
       <table

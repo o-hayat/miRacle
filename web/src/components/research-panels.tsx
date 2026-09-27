@@ -583,7 +583,7 @@ export function EvidencePanel({
                   (x) =>
                     `${x.evidence_type}: ${x.experiment} (${x.biological_context})`,
                 )
-                .join(" / ") || "—",
+                .join(" / ") || "n/a",
               matching.length ? (
                 <a
                   key="source"
@@ -594,7 +594,7 @@ export function EvidencePanel({
                   {matching[0].reference} ↗
                 </a>
               ) : (
-                "—"
+                "n/a"
               ),
             ];
           })}
@@ -749,7 +749,7 @@ export function EvaluationPanel({ metrics }: { metrics: Metrics }) {
           <div className="figure-heading">
             <div>
               <p className="figure-number">CLASSIFICATION OUTCOMES</p>
-              <h3>Confusion matrix — {metrics.selection.selected_model}</h3>
+              <h3>Confusion matrix: {metrics.selection.selected_model}</h3>
             </div>
           </div>
           <table

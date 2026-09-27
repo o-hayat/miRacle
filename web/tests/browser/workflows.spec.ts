@@ -89,7 +89,7 @@ test("live scan, candidate state, evidence, exports and comparison", async ({
   await page.getByRole("tab", { name: "Evaluation", exact: true }).click();
   await expect(
     page.getByRole("heading", {
-      name: "Confusion matrix — Logistic regression",
+      name: "Confusion matrix: Logistic regression",
     }),
   ).toBeVisible();
   await page.getByRole("tab", { name: "Discover", exact: true }).click();
