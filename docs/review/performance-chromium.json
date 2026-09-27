@@ -1,0 +1,10 @@
+{
+  "inputLength": 20000,
+  "runtimeMs": 40731,
+  "wallMs": 40937,
+  "mainThreadTicks": 818,
+  "maxTickGapMs": 51.599999994039536,
+  "wasmHeapBytes": 16777216,
+  "peakBrowserRssKiB": 632032,
+  "rssMethod": "ps RSS sum of processes with ms-playwright executable paths, sampled once per second; may count shared pages more than once"
+}

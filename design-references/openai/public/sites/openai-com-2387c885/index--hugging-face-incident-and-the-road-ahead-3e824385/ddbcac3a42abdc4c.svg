@@ -1,0 +1,17 @@
+<svg width="448" height="380" viewBox="0 0 448 380" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M303.915 116.242V233.427L178.771 305.678M178.771 305.678V312.627M53.628 116.242V233.427L178.771 305.678M178.771 305.678V182.465M303.915 233.427L178.771 161.175M303.915 116.242L309.99 112.735M53.628 116.242L178.771 43.9907L303.915 116.242M303.915 116.242L178.771 182.465M47.5527 112.735V236.868L178.771 312.627L309.99 236.868V112.735L178.771 36.9756L47.5527 112.735ZM178.771 43.9907V161.175M53.628 116.242L47.5527 112.735M53.628 116.242L178.771 182.465M53.628 233.427L116.2 197.301L178.771 161.175" stroke="black" stroke-width="1.4"/>
+<circle cx="209.591" cy="225.387" r="11.6907" fill="#1E60E4"/>
+<path d="M209.592 225.387L354.798 309.222" stroke="#1E60E4" stroke-width="1.4"/>
+<path d="M401.381 309.116L401.381 256.372L355.737 230L310.093 256.372L310.093 309.116L355.737 335.487L401.381 309.116ZM310.093 309.116L355.737 282.744M355.737 230L355.737 282.744M401.381 309.116L355.737 282.744" stroke="black" stroke-width="1.4"/>
+<path d="M53.6289 116.153L178.772 43.9014V161.086L116.201 197.212L53.6289 233.337V116.153Z" fill="url(#pattern0_11921_19256)"/>
+<defs>
+<pattern id="pattern0_11921_19256" patternUnits="userSpaceOnUse" patternTransform="matrix(10.5346 0 0 10.5349 53.3179 43.592)" preserveAspectRatio="none" viewBox="-0.177734 -0.176758 6.01978 6.01992" width="1" height="1">
+<use xlink:href="#pattern0_11921_19256_inner" transform="translate(-6.01978 -6.01992)"/>
+<use xlink:href="#pattern0_11921_19256_inner" transform="translate(0 -6.01992)"/>
+<use xlink:href="#pattern0_11921_19256_inner" transform="translate(-6.01978 0)"/>
+<g id="pattern0_11921_19256_inner">
+<path d="M0 10.0332C0.174395 9.85881 6.76134 3.27162 10.033 0" stroke="black" stroke-width="0.5"/>
+</g>
+</pattern></defs>
+</svg>
+

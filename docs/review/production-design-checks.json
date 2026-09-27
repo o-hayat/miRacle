@@ -1,0 +1,86 @@
+{
+  "source": "Next development preview at http://localhost:3001",
+  "measurements": [
+    {
+      "browser": "chromium",
+      "width": 1440,
+      "overflow": false,
+      "initialViolations": [],
+      "resultViolations": [],
+      "keyboardInspector": true,
+      "candidateSelectionPreserved": true
+    },
+    {
+      "browser": "chromium",
+      "width": 768,
+      "overflow": false,
+      "initialViolations": [],
+      "resultViolations": [],
+      "keyboardInspector": true,
+      "candidateSelectionPreserved": true
+    },
+    {
+      "browser": "chromium",
+      "width": 390,
+      "overflow": false,
+      "initialViolations": [],
+      "resultViolations": [],
+      "keyboardInspector": true,
+      "candidateSelectionPreserved": true
+    },
+    {
+      "browser": "firefox",
+      "width": 1440,
+      "overflow": false,
+      "initialViolations": [],
+      "resultViolations": [],
+      "keyboardInspector": true,
+      "candidateSelectionPreserved": true
+    },
+    {
+      "browser": "firefox",
+      "width": 768,
+      "overflow": false,
+      "initialViolations": [],
+      "resultViolations": [],
+      "keyboardInspector": true,
+      "candidateSelectionPreserved": true
+    },
+    {
+      "browser": "firefox",
+      "width": 390,
+      "overflow": false,
+      "initialViolations": [],
+      "resultViolations": [],
+      "keyboardInspector": true,
+      "candidateSelectionPreserved": true
+    },
+    {
+      "browser": "webkit",
+      "width": 1440,
+      "overflow": false,
+      "initialViolations": [],
+      "resultViolations": [],
+      "keyboardInspector": true,
+      "candidateSelectionPreserved": true
+    },
+    {
+      "browser": "webkit",
+      "width": 768,
+      "overflow": false,
+      "initialViolations": [],
+      "resultViolations": [],
+      "keyboardInspector": true,
+      "candidateSelectionPreserved": true
+    },
+    {
+      "browser": "webkit",
+      "width": 390,
+      "overflow": false,
+      "initialViolations": [],
+      "resultViolations": [],
+      "keyboardInspector": true,
+      "candidateSelectionPreserved": true
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+<svg width="448" height="380" viewBox="0 0 448 380" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M110.413 124.091V176.591L292.205 281.549L368.855 237.295V184.795L187.063 79.8366L110.413 124.091ZM368.855 184.795L292.205 229.049M292.205 281.549V229.049M110.413 124.091L292.205 229.049" stroke="black" stroke-width="1.4"/>
+<path d="M246.41 115.252C245.984 115.005 196.336 143.957 171.565 158.463L111.706 123.903L186.595 80.7175L246.41 115.252Z" fill="url(#pattern0_11921_19193)"/>
+<path d="M306.223 151.074C305.796 150.828 256.148 179.779 231.378 194.286L171.519 159.726L246.408 116.54L306.223 151.074Z" fill="url(#pattern1_11921_19193)"/>
+<path d="M367.943 185.279C367.517 185.033 317.869 213.984 293.099 228.491L233.239 193.931L308.129 150.745L367.943 185.279Z" fill="url(#pattern2_11921_19193)"/>
+<path d="M171.218 159.101C171.218 159.379 221.347 130.275 246.411 115.688" stroke="black" stroke-width="1.4"/>
+<path d="M231.856 194.183C231.856 194.183 282.665 164.994 307.729 150.407" stroke="black" stroke-width="1.4"/>
+<path d="M286.003 233.702L118.468 136.975V172.222L286.003 268.948V233.702Z" stroke="black" stroke-width="1.4"/>
+<path d="M286.003 233.702L118.468 136.975V172.222L286.003 268.948V233.702Z" stroke="black" stroke-width="1.4"/>
+<circle cx="203.543" cy="202.779" r="5.84514" fill="black"/>
+<path d="M90.8369 203.241H202.351V297.916M202.351 203.241L119.042 251.339" stroke="black" stroke-width="1.4"/>
+<circle cx="122.104" cy="249.404" r="11.6907" fill="#027F41"/>
+<circle cx="90.8362" cy="203.494" r="11.6907" fill="#027F41"/>
+<circle cx="202.35" cy="288.473" r="11.6907" fill="#027F41"/>
+<defs>
+<pattern id="pattern0_11921_19193" patternUnits="userSpaceOnUse" patternTransform="matrix(7.15799 0 0 14.316 178.206 118.738)" preserveAspectRatio="none" viewBox="0 0 4.06875 8.1375" width="1" height="1">
+<use xlink:href="#pattern0_11921_19193_inner" transform="translate(-4.06875 0)"/>
+<g id="pattern0_11921_19193_inner">
+<circle cx="0.484375" cy="0.484375" r="0.484375" fill="black"/>
+</g>
+<use xlink:href="#pattern0_11921_19193_inner" transform="translate(-2.03437 4.06875)"/>
+<use xlink:href="#pattern0_11921_19193_inner" transform="translate(2.03437 4.06875)"/>
+</pattern><pattern id="pattern1_11921_19193" patternUnits="userSpaceOnUse" patternTransform="matrix(5.11285 0 0 10.2257 238.018 154.56)" preserveAspectRatio="none" viewBox="0 0 2.90625 5.8125" width="1" height="1">
+<use xlink:href="#pattern1_11921_19193_inner" transform="translate(-2.90625 0)"/>
+<g id="pattern1_11921_19193_inner">
+<circle cx="0.484375" cy="0.484375" r="0.484375" fill="black"/>
+</g>
+<use xlink:href="#pattern1_11921_19193_inner" transform="translate(-1.45312 2.90625)"/>
+<use xlink:href="#pattern1_11921_19193_inner" transform="translate(1.45312 2.90625)"/>
+</pattern><pattern id="pattern2_11921_19193" patternUnits="userSpaceOnUse" patternTransform="matrix(3.74942 0 0 7.49884 299.739 188.766)" preserveAspectRatio="none" viewBox="0 0 2.13125 4.2625" width="1" height="1">
+<use xlink:href="#pattern2_11921_19193_inner" transform="translate(-2.13125 0)"/>
+<g id="pattern2_11921_19193_inner">
+<circle cx="0.484375" cy="0.484375" r="0.484375" fill="black"/>
+</g>
+<use xlink:href="#pattern2_11921_19193_inner" transform="translate(-1.06563 2.13125)"/>
+<use xlink:href="#pattern2_11921_19193_inner" transform="translate(1.06563 2.13125)"/>
+</pattern></defs>
+</svg>
+

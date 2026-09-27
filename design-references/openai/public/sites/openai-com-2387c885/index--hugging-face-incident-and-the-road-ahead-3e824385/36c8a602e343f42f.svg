@@ -1,0 +1,37 @@
+<svg width="448" height="380" viewBox="0 0 448 380" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M224.293 242.001V294.744L269.97 321.116L315.647 294.744V242.001L269.97 215.629L224.293 242.001ZM315.647 242.001L269.97 268.372M269.97 321.116V268.372M224.293 242.001L269.97 268.372" stroke="black" stroke-width="1.4"/>
+<path d="M284.684 153.992V206.735L360.324 250.406L406.001 224.035V171.291L330.361 127.62L284.684 153.992ZM406.001 171.291L360.324 197.663M360.324 250.406V197.663M284.684 153.992L360.324 197.663" stroke="black" stroke-width="1.4"/>
+<path d="M193.328 85.3718V138.115L239.005 164.487L284.683 138.115V85.3718L239.005 59L193.328 85.3718ZM284.683 85.3718L239.005 111.744M239.005 164.487V111.744M193.328 85.3718L239.005 111.744" stroke="black" stroke-width="1.4"/>
+<circle cx="164.216" cy="188.568" r="5.84514" fill="black"/>
+<path d="M164.215 189H284.744M164.215 189L223.941 154.517M164.215 189L240.672 233.143M164.215 189L86.6569 144.222M164.215 189H55.6834M164.215 189L86.6569 233.778" stroke="black" stroke-width="1.4"/>
+<circle cx="86.6575" cy="235.497" r="11.6907" fill="#027F41"/>
+<circle cx="55.4993" cy="188.989" r="11.6907" fill="#027F41"/>
+<circle cx="86.6575" cy="142.484" r="11.6907" fill="#027F41"/>
+<path d="M270.266 320.276V268.314L314.725 242.634V294.607L270.266 320.276Z" fill="url(#pattern0_11921_19121)"/>
+<path d="M361.096 249.406V197.445L405.555 171.765V223.738L361.096 249.406Z" fill="url(#pattern1_11921_19121)"/>
+<path d="M239.006 164.108V112.146L283.465 86.4658V138.439L239.006 164.108Z" fill="url(#pattern2_11921_19121)"/>
+<defs>
+<pattern id="pattern0_11921_19121" patternUnits="userSpaceOnUse" patternTransform="matrix(3.74942 0 0 7.49884 291.643 280.603)" preserveAspectRatio="none" viewBox="0 0 2.13125 4.2625" width="1" height="1">
+<use xlink:href="#pattern0_11921_19121_inner" transform="translate(-2.13125 0)"/>
+<g id="pattern0_11921_19121_inner">
+<circle cx="0.484375" cy="0.484375" r="0.484375" fill="black"/>
+</g>
+<use xlink:href="#pattern0_11921_19121_inner" transform="translate(-1.06563 2.13125)"/>
+<use xlink:href="#pattern0_11921_19121_inner" transform="translate(1.06563 2.13125)"/>
+</pattern><pattern id="pattern1_11921_19121" patternUnits="userSpaceOnUse" patternTransform="matrix(5.11285 0 0 10.2257 382.473 209.733)" preserveAspectRatio="none" viewBox="0 0 2.90625 5.8125" width="1" height="1">
+<use xlink:href="#pattern1_11921_19121_inner" transform="translate(-2.90625 0)"/>
+<g id="pattern1_11921_19121_inner">
+<circle cx="0.484375" cy="0.484375" r="0.484375" fill="black"/>
+</g>
+<use xlink:href="#pattern1_11921_19121_inner" transform="translate(-1.45312 2.90625)"/>
+<use xlink:href="#pattern1_11921_19121_inner" transform="translate(1.45312 2.90625)"/>
+</pattern><pattern id="pattern2_11921_19121" patternUnits="userSpaceOnUse" patternTransform="matrix(7.15799 0 0 14.316 260.383 124.435)" preserveAspectRatio="none" viewBox="0 0 4.06875 8.1375" width="1" height="1">
+<use xlink:href="#pattern2_11921_19121_inner" transform="translate(-4.06875 0)"/>
+<g id="pattern2_11921_19121_inner">
+<circle cx="0.484375" cy="0.484375" r="0.484375" fill="black"/>
+</g>
+<use xlink:href="#pattern2_11921_19121_inner" transform="translate(-2.03437 4.06875)"/>
+<use xlink:href="#pattern2_11921_19121_inner" transform="translate(2.03437 4.06875)"/>
+</pattern></defs>
+</svg>
+

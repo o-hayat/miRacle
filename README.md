@@ -1,5 +1,7 @@
 # miRacle
 
+The new static browser interface lives in [`web/`](web/README.md). It runs the preserved trained model and ViennaRNA 2.7.2 locally in a Web Worker, exports a static site for Vercel, and keeps all five research workflows. The Python application below remains the scientific reference and local application.
+
 miRacle is a human-trained prototype that turns a short DNA/RNA sequence or selected hg38 locus into an explainable ranked shortlist of **pre-miRNA-like hairpins**.
 
 It is a candidate-triage tool, not a discovery claim. A score does not demonstrate transcription, precise Drosha/Dicer processing, RISC loading, gene targeting, disease association, or experimental validation.

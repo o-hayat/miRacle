@@ -1,0 +1,48 @@
+.host {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 70%);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.host .drawer {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: min(100%, 704px);
+  max-width: 704px;
+  height: 100dvh;
+  translate: none !important;
+  transform: translateX(100%) !important;
+  transition: transform 200ms ease !important;
+  animation: none !important;
+  background: #fff;
+  color: #000;
+}
+
+.figure { max-width: 100%; height: auto; }
+
+.host[data-open="true"] .backdrop { opacity: 1; }
+.host[data-open="true"] .drawer { transform: translate(0) !important; }
+
+@media (max-width: 768px) {
+  .host .drawer {
+    inset: 20dvh 0 0;
+    width: 100%;
+    max-width: none;
+    height: 80dvh;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    transform: translateY(100%) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop, .host .drawer { transition: none !important; }
+}

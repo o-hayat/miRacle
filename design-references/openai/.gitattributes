@@ -1,0 +1,2 @@
+# Preserve inspected third-party SVG/CSS bytes, including their source whitespace.
+public/sites/** -whitespace

@@ -1,0 +1,152 @@
+[
+  {
+    "route": "/index/introducing-mentalhealthbench/",
+    "width": 390,
+    "heading": "Introducing MentalHealthBench",
+    "overflow": false,
+    "brokenImages": [],
+    "chartCount": 0,
+    "errors": [],
+    "failures": []
+  },
+  {
+    "route": "/index/introducing-mentalhealthbench/",
+    "width": 768,
+    "heading": "Introducing MentalHealthBench",
+    "overflow": false,
+    "brokenImages": [],
+    "chartCount": 0,
+    "errors": [],
+    "failures": []
+  },
+  {
+    "route": "/index/introducing-mentalhealthbench/",
+    "width": 1440,
+    "heading": "Introducing MentalHealthBench",
+    "overflow": false,
+    "brokenImages": [],
+    "chartCount": 0,
+    "errors": [],
+    "failures": []
+  },
+  {
+    "route": "/index/introducing-gpt-live-1-in-the-api/",
+    "width": 390,
+    "heading": "Build more natural voice experiences with GPT‑Live‑1 in the API",
+    "overflow": false,
+    "brokenImages": [],
+    "chartCount": 0,
+    "errors": [],
+    "failures": []
+  },
+  {
+    "route": "/index/introducing-gpt-live-1-in-the-api/",
+    "width": 768,
+    "heading": "Build more natural voice experiences with GPT‑Live‑1 in the API",
+    "overflow": false,
+    "brokenImages": [],
+    "chartCount": 0,
+    "errors": [],
+    "failures": []
+  },
+  {
+    "route": "/index/introducing-gpt-live-1-in-the-api/",
+    "width": 1440,
+    "heading": "Build more natural voice experiences with GPT‑Live‑1 in the API",
+    "overflow": false,
+    "brokenImages": [],
+    "chartCount": 0,
+    "errors": [],
+    "failures": []
+  },
+  {
+    "route": "/index/research-acceleration-view-inside-openai/",
+    "width": 390,
+    "heading": "Research acceleration: The view inside OpenAI",
+    "overflow": false,
+    "brokenImages": [],
+    "chartCount": 13,
+    "errors": [],
+    "failures": []
+  },
+  {
+    "route": "/index/research-acceleration-view-inside-openai/",
+    "width": 768,
+    "heading": "Research acceleration: The view inside OpenAI",
+    "overflow": false,
+    "brokenImages": [],
+    "chartCount": 13,
+    "errors": [],
+    "failures": []
+  },
+  {
+    "route": "/index/research-acceleration-view-inside-openai/",
+    "width": 1440,
+    "heading": "Research acceleration: The view inside OpenAI",
+    "overflow": false,
+    "brokenImages": [],
+    "chartCount": 13,
+    "errors": [],
+    "failures": []
+  },
+  {
+    "route": "/index/navier-stokes-solution/",
+    "width": 390,
+    "heading": "On the Navier–Stokes Millennium Prize Problem",
+    "overflow": false,
+    "brokenImages": [],
+    "chartCount": 0,
+    "errors": [],
+    "failures": []
+  },
+  {
+    "route": "/index/navier-stokes-solution/",
+    "width": 768,
+    "heading": "On the Navier–Stokes Millennium Prize Problem",
+    "overflow": false,
+    "brokenImages": [],
+    "chartCount": 0,
+    "errors": [],
+    "failures": []
+  },
+  {
+    "route": "/index/navier-stokes-solution/",
+    "width": 1440,
+    "heading": "On the Navier–Stokes Millennium Prize Problem",
+    "overflow": false,
+    "brokenImages": [],
+    "chartCount": 0,
+    "errors": [],
+    "failures": []
+  },
+  {
+    "route": "/index/hugging-face-incident-and-the-road-ahead/",
+    "width": 390,
+    "heading": "The Hugging Face incident and the road ahead",
+    "overflow": false,
+    "brokenImages": [],
+    "chartCount": 0,
+    "errors": [],
+    "failures": []
+  },
+  {
+    "route": "/index/hugging-face-incident-and-the-road-ahead/",
+    "width": 768,
+    "heading": "The Hugging Face incident and the road ahead",
+    "overflow": false,
+    "brokenImages": [],
+    "chartCount": 0,
+    "errors": [],
+    "failures": []
+  },
+  {
+    "route": "/index/hugging-face-incident-and-the-road-ahead/",
+    "width": 1440,
+    "heading": "The Hugging Face incident and the road ahead",
+    "overflow": false,
+    "brokenImages": [],
+    "chartCount": 0,
+    "errors": [],
+    "failures": []
+  }
+]

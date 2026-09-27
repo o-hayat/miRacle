@@ -1,0 +1,1 @@
+ViennaRNA 2.7.2; Emscripten 4.0.20; source SHA256 1ab5f4a4f76fc85a2243546088e45f5d85f2d7a56cc656e969b005cce9bfab5f

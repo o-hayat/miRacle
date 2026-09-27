@@ -1,0 +1,22 @@
+<svg width="448" height="380" viewBox="0 0 448 380" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M377.745 122.516V257.561L233.527 340.825M233.527 340.825V348.833M89.3099 122.516V257.561L233.527 340.825M377.745 257.561L233.527 174.297M377.745 122.516L384.746 118.474M89.3099 122.516L233.527 39.2517L377.745 122.516M82.3086 118.474V261.526L233.527 348.833L384.746 261.526V118.474L233.527 31.1674L82.3086 118.474ZM233.527 39.2517V174.297M89.3099 122.516L82.3086 118.474M89.3099 257.561L233.527 174.297" stroke="black" stroke-width="1.4"/>
+<path d="M329.544 245.757L233.401 301.265L137.258 245.757V134.949L233.401 79.4408L329.544 134.949V245.757Z" fill="white"/>
+<path d="M137.258 134.949L233.401 79.4408L329.544 134.949V245.757L233.401 301.265L137.258 245.757V134.949ZM233.401 301.265V190.457M329.544 134.949L233.401 190.457M233.401 190.457L137.258 134.949" stroke="black" stroke-width="1.4"/>
+<path d="M219.609 198.454L150.699 158.668V190.348L219.609 230.133V198.454Z" fill="url(#pattern0_11921_19226)"/>
+<path d="M150.699 190.743V190.348M150.699 190.348V158.668L219.609 198.454V230.133L150.699 190.348Z" stroke="black" stroke-width="1.4"/>
+<path d="M219.609 246.124L150.699 206.339V238.018L219.609 277.804V246.124Z" fill="url(#pattern1_11921_19226)"/>
+<path d="M150.699 238.414V238.018M150.699 238.018V206.339L219.609 246.124V277.804L150.699 238.018Z" stroke="black" stroke-width="1.4"/>
+<circle cx="74.9446" cy="304.077" r="11.6907" fill="#C93B00"/>
+<path d="M181.59 243.101L74.9492 304.077" stroke="#C93B00" stroke-width="1.4"/>
+<defs>
+<pattern id="pattern0_11921_19226" patternUnits="userSpaceOnUse" patternTransform="matrix(7.12031 0 0 7.12031 150.699 158.668)" preserveAspectRatio="none" viewBox="0 0 4.06875 4.06875" width="1" height="1">
+<g id="pattern0_11921_19226_inner">
+<circle cx="0.484375" cy="0.484375" r="0.484375" fill="black"/>
+</g>
+</pattern><pattern id="pattern1_11921_19226" patternUnits="userSpaceOnUse" patternTransform="matrix(5.08594 0 0 5.08594 150.699 206.339)" preserveAspectRatio="none" viewBox="0 0 2.90625 2.90625" width="1" height="1">
+<g id="pattern1_11921_19226_inner">
+<circle cx="0.484375" cy="0.484375" r="0.484375" fill="black"/>
+</g>
+</pattern></defs>
+</svg>
+

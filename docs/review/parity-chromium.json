@@ -1,0 +1,302 @@
+[
+  {
+    "file": "mir21_region-cds.json",
+    "runtime_ms": 2072,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "mir21_region-all_exons.json",
+    "runtime_ms": 0,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "mir21_region-none.json",
+    "runtime_ms": 2064,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030359_mir630-cds.json",
+    "runtime_ms": 54,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030359_mir630-all_exons.json",
+    "runtime_ms": 53,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030359_mir630-none.json",
+    "runtime_ms": 53,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030362_mir632-cds.json",
+    "runtime_ms": 58,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030362_mir632-all_exons.json",
+    "runtime_ms": 58,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030362_mir632-none.json",
+    "runtime_ms": 57,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030386_mir663a-cds.json",
+    "runtime_ms": 61,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030386_mir663a-all_exons.json",
+    "runtime_ms": 59,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030386_mir663a-none.json",
+    "runtime_ms": 59,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_031612_mir1207-cds.json",
+    "runtime_ms": 38,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_031612_mir1207-all_exons.json",
+    "runtime_ms": 38,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_031612_mir1207-none.json",
+    "runtime_ms": 39,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_031622_mir1290-cds.json",
+    "runtime_ms": 31,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_031622_mir1290-all_exons.json",
+    "runtime_ms": 30,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_031622_mir1290-none.json",
+    "runtime_ms": 31,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030646_mir1225-cds.json",
+    "runtime_ms": 41,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030646_mir1225-all_exons.json",
+    "runtime_ms": 41,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030646_mir1225-none.json",
+    "runtime_ms": 41,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_031597_mir1228-cds.json",
+    "runtime_ms": 32,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_031597_mir1228-all_exons.json",
+    "runtime_ms": 31,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_031597_mir1228-none.json",
+    "runtime_ms": 31,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030359_mir630_plusminus500-cds.json",
+    "runtime_ms": 2358,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030359_mir630_plusminus500-all_exons.json",
+    "runtime_ms": 0,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030359_mir630_plusminus500-none.json",
+    "runtime_ms": 2368,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030362_mir632_plusminus500-cds.json",
+    "runtime_ms": 2003,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030362_mir632_plusminus500-all_exons.json",
+    "runtime_ms": 1723,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030362_mir632_plusminus500-none.json",
+    "runtime_ms": 2264,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030386_mir663a_plusminus500-cds.json",
+    "runtime_ms": 2329,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030386_mir663a_plusminus500-all_exons.json",
+    "runtime_ms": 2333,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030386_mir663a_plusminus500-none.json",
+    "runtime_ms": 2282,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_031612_mir1207_plusminus500-cds.json",
+    "runtime_ms": 2208,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_031612_mir1207_plusminus500-all_exons.json",
+    "runtime_ms": 2226,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_031612_mir1207_plusminus500-none.json",
+    "runtime_ms": 2255,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_031622_mir1290_plusminus500-cds.json",
+    "runtime_ms": 2200,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_031622_mir1290_plusminus500-all_exons.json",
+    "runtime_ms": 2202,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_031622_mir1290_plusminus500-none.json",
+    "runtime_ms": 2180,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030646_mir1225_plusminus500-cds.json",
+    "runtime_ms": 118,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030646_mir1225_plusminus500-all_exons.json",
+    "runtime_ms": 116,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_030646_mir1225_plusminus500-none.json",
+    "runtime_ms": 2328,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_031597_mir1228_plusminus500-cds.json",
+    "runtime_ms": 1114,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_031597_mir1228_plusminus500-all_exons.json",
+    "runtime_ms": 1102,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "nr_031597_mir1228_plusminus500-none.json",
+    "runtime_ms": 2188,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "negative_control-cds.json",
+    "runtime_ms": 2149,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "negative_control-all_exons.json",
+    "runtime_ms": 2145,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "negative_control-none.json",
+    "runtime_ms": 2137,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "rfam_trna_control-cds.json",
+    "runtime_ms": 53,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "rfam_trna_control-all_exons.json",
+    "runtime_ms": 53,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "rfam_trna_control-none.json",
+    "runtime_ms": 53,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "rfam_rrna_control-cds.json",
+    "runtime_ms": 107,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "rfam_rrna_control-all_exons.json",
+    "runtime_ms": 107,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "rfam_rrna_control-none.json",
+    "runtime_ms": 107,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "rfam_snorna_control-cds.json",
+    "runtime_ms": 51,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "rfam_snorna_control-all_exons.json",
+    "runtime_ms": 53,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "rfam_snorna_control-none.json",
+    "runtime_ms": 51,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "rfam_ribozyme_control-cds.json",
+    "runtime_ms": 19,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "rfam_ribozyme_control-all_exons.json",
+    "runtime_ms": 20,
+    "wasm_heap_bytes": 16777216
+  },
+  {
+    "file": "rfam_ribozyme_control-none.json",
+    "runtime_ms": 19,
+    "wasm_heap_bytes": 16777216
+  }
+]
