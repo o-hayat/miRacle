@@ -1,0 +1,7 @@
+# The checked-in classifier was trained with sklearn 1.5.0.
+-r requirements.txt
+scikit-learn==1.5.0
+ViennaRNA==2.7.2
+numpy==1.26.4
+pandas==2.2.3
+joblib==1.4.2

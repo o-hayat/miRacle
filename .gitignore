@@ -31,6 +31,7 @@ service-account*.json
 # Local tool/editor metadata
 .codex/
 .agents/
+.cursor/hooks/state/
 .idea/
 .vscode/
 *.swp
@@ -50,3 +51,12 @@ Thumbs.db
 # Re-downloadable/raw preparation data and scratch output
 artifacts/raw/
 artifacts/tmp/
+
+# Browser builds and local verification artifacts
+node_modules/
+.next/
+web/out/
+web/test-results*/
+web/playwright-report/
+*.tsbuildinfo
+.vercel/

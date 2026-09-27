@@ -1,0 +1,34 @@
+/*
+*   NAVIEW -- A program to make a modified radial drawing of an RNA
+*   secondary structure.
+*
+*   Copyright (c) 1988 Robert E. Bruccoleri
+*   Copying of this software, in whole or in part, is permitted
+*   provided that the copies are not made for commercial purposes,
+*   appropriate credit for the use of the software is given, this
+*   copyright notice appears, and notice is given that the copying
+*   is by permission of Robert E. Bruccoleri. Any other copying
+*   requires specific permission.
+*
+*   See R. Bruccoleri and G. Heinrich, Computer Applications in the
+*   Biosciences, 4, 167-173 (1988) for a full description.
+*
+*   In November 1997, Michael Zuker made a number of changes to bring
+*   naview up to modern standards. All functions defined in naview are
+*   now declared before main() with arguments and argument types.
+*   When functions are defined, their argument types are declared
+*   with the function and these definitions are removed after the '{'.
+*   The 'void' declaration was used as necessary for functions.
+*
+*   The troublesome na_scanf function was deleted and replaced by
+*   scanf. Finally, there is now no default for the minimum separation
+*   of bases. A floating point number must be entered. However, as
+*   before an entry < 0 will be moved up to 0 and an entry > 0.5
+*   will be reduced to 0.5.
+*
+*   Adapted for use as a subroutine in the Vienna RNA Package
+*   by Ivo Hofacker, May 1998:
+*   deleted output routines, replaced main() by naview_xy_coordinates(),
+*   which fills the X and Y arrays used by PS_rna_plot() etc.
+*   added ansi prototypes and fixed memory leaks.
+*/
